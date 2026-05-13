@@ -1,0 +1,18 @@
+
+executable = run_dyturbo.sh
+
+arguments = jobs/etal_NNLL_muR1.0_muF0.5.in
+
+output = logs/etal_NNLL_muR1.0_muF0.5.out
+error  = logs/etal_NNLL_muR1.0_muF0.5.err
+log    = logs/etal_NNLL_muR1.0_muF0.5.log
+
+getenv = True
+
++JobFlavour = "tomorrow"
+
+request_cpus = 1
+request_memory = 2048
+Requirements = (machine == "hercules02.hcms.it")
+
+queue

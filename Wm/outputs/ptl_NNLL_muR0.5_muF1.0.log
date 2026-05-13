@@ -1,0 +1,3297 @@
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ Process settings ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+   proton-proton collisions at sqrt(s) = 13000 GeV 
+   Computing NNLO+NNLL resummed cross section
+   W- ->  e^-(p3)+nu~(p4) production 
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ CKM matrix ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+     | Vud Vus Vub |   |   0.97427   0.2253  0.00351 | 
+     | Vcd Vcs Vcb | = |    0.2252  0.97344   0.0412 | 
+     | Vtd Vts Vtb |   |         0        0        0 | 
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ EW parameters ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+                                         Gf =  1.1663787e-05      GeV^-2
+                                    1/alpha =  132.233229791            
+                                 sin(thW)^2 = 0.222897222524            
+                                     W mass =         80.385         GeV
+                                     Z mass =        91.1876         GeV
+                                    W width =          2.091         GeV
+                                    Z width =          2.495         GeV
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ QCD settings ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+   Renormalization scale:     dynamic muren =            0.5      * m_ll
+     Factorization scale:     dynamic mufac =              1      * m_ll
+       Resummation scale:     dynamic mures =              1      * m_ll
+          Strong coupling       alpha_s(MZ) =       0.118001            
+                              running order =              3       -loop
+         Non-perturbative     form factor g =            0.7       GeV^2
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ PDF settings ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+                                     PDF set:MSHT20nnlo_as118            
+                                  PDF member:              0            
+  Mellin moments of PDFs:                    Numerical integration            
+                         nodes for the quadrature:            200            
+                         Intervals for the quadrature:              1            
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ qT recoil ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+  qt-recoil prescription:       Collins-Soper kt1 = p_V(x)/2; kt2 = p_V(y)/2            
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ Cuts ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+                                  apply cuts:           true            
+                                      pt_l >               0            
+                                   |eta_l| <            1000            
+                                    pt_lep >              25            
+                                 |eta_lep| <             2.4            
+                                   pt_alep >              25            
+                                |eta_alep| <             2.4            
+                                  user cuts:            true            
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ ResummationDamp ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+                                    damping :             on            
+                                damping mode:              1            
+                                  damp above:        60.2888         GeV
+                               damping width:        20.0963         GeV
+                          resummation cutoff:             20         MeV
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ Debug settings ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+                                 timeprofile:          false            
+                                     verbose:          false            
+                               cubaverbosity:              2            
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+
+Warning: Histogram `a1_qt` contains non-integrable observable and will be deleted 
+Warning: Histogram `a1_qt_vs_y` contains non-integrable observable and will be deleted 
+Warning: Histogram `s_biganswer` contains non-integrable observable and will be deleted 
+Warning: Histogram `wgt_a1_qt` contains non-integrable observable and will be deleted 
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ Integration settings ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+             Random seeds              123456                           
+           Parallel cores                   1                           
+
+             Resummation:     cuhre (dm, dpt)         iter =           5
+                                   gauss (dy)        nodes =          64
+                                                 intervals =           1
+            Counter term:      cuhre (dm, dy)         iter =           5
+                                  gauss (dpt)        nodes =          20
+                                                 intervals =           5
+                V+J Real:               vegas       ncalls =    50000000
+             V+J Virtual:               vegas       ncalls =     5000000
+
+Mellin inverse transform:           gaussian         nodes =          30
+                                                 intervals =           1
+                               imaginary axis         zmax =           2
+  Angular variable costh:     semi-analytical      ncstart =         100
+   Angular variables phi:            gaussian    intervals =          20
+
+      Constant boundaries                  q2          low =          80
+                                                      high =         100
+                                            y          low =          -6
+                                                      high =           6
+                                           qT          low =           0
+                                                      high =         100
+                                        costh          low =          -1
+                                                      high =           1
+                                       eta(l)          low =         -10
+                                                      high =          10
+
+┏━━━━━━━━━━━━━━┰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃        pT(l) ┃                      Resummation ┃                     Counter term ┃                         V+J Real ┃                      V+J Virtual ┃                            TOTAL ┃
+┣━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃   25 -    26 ┃ 36.2426 ± 0.0041 ·10⁺⁰³ (14.6mi) ┃ -33.285 ±  0.018 ·10⁺⁰³ (9.17mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -58722.8 +- 18786.4  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -78293.1 +- 8317.88  	chisq 1.34981 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -82075.2 +- 6718.89  	chisq 1.94474 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -85251.3 +- 5702.06  	chisq 2.74344 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -88924.7 +- 3082.33  	chisq 3.3298 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -90544.7 +- 2359.02  	chisq 3.99663 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -90463.8 +- 2298.43  	chisq 4.01983 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -91090.6 +- 2235.88  	chisq 5.40483 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -90970.8 +- 2059.02  	chisq 5.42372 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -90750.3 +- 2034.59  	chisq 5.90976 (9 df)
+   -90.8 ±      2 ·10⁺⁰³ (4.38mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 108670 +- 21559.1  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 119486 +- 4115.62  	chisq 0.261229 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 128040 +- 2049.67  	chisq 6.0046 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 127723 +- 793.862  	chisq 6.03257 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 127188 +- 412.149  	chisq 6.65624 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 127668 +- 285.558  	chisq 9.27164 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 127727 +- 220.914  	chisq 9.37778 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 127792 +- 182.118  	chisq 9.64788 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 127767 +- 156.777  	chisq 9.7236 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 127862 +- 138.105  	chisq 11.3713 (9 df)
+  127.86 ±   0.14 ·10⁺⁰³ (1.71mi) ┃    40.1 ±      2 ·10⁺⁰³ (29.8mi) ┃
+┃   26 -    27 ┃  41.114 ±  0.039 ·10⁺⁰³ (14.9mi) ┃  -33.32 ±  0.022 ·10⁺⁰³ (5.15mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -2.30977e+06 +- 2.15063e+06  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -80607.3 +- 31867.8  	chisq 1.07461 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -131382 +- 20597.6  	chisq 5.43459 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -142274 +- 11020.1  	chisq 5.82636 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -144496 +- 4869.67  	chisq 5.87688 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -139182 +- 3167.29  	chisq 7.9407 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -138840 +- 2830.1  	chisq 7.99864 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -139043 +- 2817.92  	chisq 8.59895 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -139562 +- 2725.4  	chisq 9.12491 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -139200 +- 2642.44  	chisq 9.41978 (9 df)
+  -139.2 ±    2.6 ·10⁺⁰³ (4.66mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 183668 +- 34652.8  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 170576 +- 5623.08  	chisq 0.146594 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 168113 +- 1340.64  	chisq 0.350131 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 168750 +- 682.061  	chisq 0.65475 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 167960 +- 432.159  	chisq 2.89366 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 168143 +- 331.569  	chisq 3.32702 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 168166 +- 266.958  	chisq 3.34172 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 168141 +- 221.087  	chisq 3.36966 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 167972 +- 188.645  	chisq 5.53384 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 168027 +- 165.126  	chisq 5.90537 (9 df)
+  168.03 ±   0.17 ·10⁺⁰³ (1.84mi) ┃    36.6 ±    2.6 ·10⁺⁰³ (26.6mi) ┃
+┃   27 -    28 ┃  46.249 ±  0.023 ·10⁺⁰³ (  15mi) ┃ -39.237 ±  0.017 ·10⁺⁰³ (20.2mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -120170 +- 22112.2  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -139022 +- 11239.1  	chisq 0.980112 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -153230 +- 6810.68  	chisq 3.50564 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -158298 +- 5711.21  	chisq 5.37061 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -157773 +- 4394.43  	chisq 5.39133 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -154815 +- 3478.12  	chisq 6.60419 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -155744 +- 3138.55  	chisq 6.98899 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -155082 +- 2330.97  	chisq 7.08829 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -154986 +- 2323.67  	chisq 7.36012 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -154125 +- 2213.85  	chisq 8.84933 (9 df)
+  -154.1 ±    2.2 ·10⁺⁰³ (4.59mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 162564 +- 17705.3  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 193719 +- 4814.71  	chisq 3.34361 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 195070 +- 1291.92  	chisq 3.42841 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 195318 +- 654.383  	chisq 3.47794 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 195428 +- 434.923  	chisq 3.52876 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 195697 +- 353.031  	chisq 4.65027 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 195757 +- 291.127  	chisq 4.74057 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 195601 +- 241.92  	chisq 5.66944 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 195362 +- 206.845  	chisq 9.29464 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 195533 +- 181.663  	chisq 12.3005 (9 df)
+  195.53 ±   0.18 ·10⁺⁰³ (1.93mi) ┃    48.4 ±    2.2 ·10⁺⁰³ (41.7mi) ┃
+┃   28 -    29 ┃  51.478 ±  0.023 ·10⁺⁰³ (14.9mi) ┃ -45.591 ±  0.014 ·10⁺⁰³ (10.4mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -130604 +- 18428  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -149535 +- 12055.1  	chisq 1.84491 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -148819 +- 11896.5  	chisq 1.9801 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -158572 +- 8263.93  	chisq 3.27893 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -167075 +- 5460.42  	chisq 5.15846 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -166125 +- 5050.13  	chisq 5.36807 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -169903 +- 3701.16  	chisq 6.57754 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -167978 +- 2968.47  	chisq 7.33583 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -167966 +- 2502.26  	chisq 7.33589 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -169399 +- 2356.65  	chisq 10.235 (9 df)
+  -169.4 ±    2.4 ·10⁺⁰³ (4.72mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 224675 +- 37202.2  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 217887 +- 4724.93  	chisq 0.0338457 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 221585 +- 1564.02  	chisq 0.72205 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 219233 +- 751.074  	chisq 3.66166 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 218673 +- 482.572  	chisq 4.61024 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 219271 +- 366.61  	chisq 8.25081 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 219399 +- 295.935  	chisq 8.59722 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 219311 +- 248.292  	chisq 8.89742 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 218971 +- 214.692  	chisq 16.2936 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 219113 +- 190.296  	chisq 18.3223 (9 df)
+  219.11 ±   0.19 ·10⁺⁰³ (1.98mi) ┃    55.6 ±    2.4 ·10⁺⁰³ (  32mi) ┃
+┃   29 -    30 ┃  57.113 ±  0.011 ·10⁺⁰³ (  14mi) ┃ -51.757 ±  0.019 ·10⁺⁰³ (5.34mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -243055 +- 56678.8  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -163136 +- 20926.6  	chisq 2.30202 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -170567 +- 12043.8  	chisq 2.49057 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -177603 +- 5760.87  	chisq 2.93318 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -187094 +- 4086.9  	chisq 8.39771 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -187673 +- 3235.46  	chisq 8.45135 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -185909 +- 2763.64  	chisq 9.55012 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -187003 +- 2607.11  	chisq 10.9733 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -186728 +- 2563.14  	chisq 11.3066 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -185800 +- 2445.46  	chisq 12.7676 (9 df)
+  -185.8 ±    2.4 ·10⁺⁰³ (4.67mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 206681 +- 22786.5  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 239811 +- 5034.09  	chisq 2.22241 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 243246 +- 1457.41  	chisq 2.73063 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 242171 +- 771.974  	chisq 3.48675 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 241599 +- 511.562  	chisq 4.46801 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 241839 +- 395.579  	chisq 5.01665 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 242171 +- 321.122  	chisq 7.07874 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 241937 +- 268.822  	chisq 8.85072 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 241646 +- 232.185  	chisq 13.4621 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 241862 +- 205.05  	chisq 17.3806 (9 df)
+  241.86 ±   0.21 ·10⁺⁰³ ( 1.9mi) ┃    61.4 ±    2.5 ·10⁺⁰³ (25.9mi) ┃
+┃   30 -    31 ┃  63.184 ±  0.026 ·10⁺⁰³ (12.9mi) ┃ -58.046 ±  0.015 ·10⁺⁰³ (4.45mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -247487 +- 80974.4  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -175094 +- 20669.5  	chisq 0.854976 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -185361 +- 19081.5  	chisq 2.5248 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -199771 +- 12714.3  	chisq 3.55049 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -200223 +- 7266.16  	chisq 3.55237 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -198002 +- 5586.34  	chisq 3.78087 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -199023 +- 4425.99  	chisq 3.87052 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -204312 +- 3126.53  	chisq 6.7208 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -203078 +- 2844.61  	chisq 7.62421 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -203384 +- 2324.13  	chisq 7.65887 (9 df)
+  -203.4 ±    2.3 ·10⁺⁰³ (4.45mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 268897 +- 41260.3  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 263368 +- 4689.41  	chisq 0.0181968 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 263804 +- 1441.39  	chisq 0.0277588 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 264584 +- 818.562  	chisq 0.459641 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 264457 +- 554.108  	chisq 0.50364 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 264805 +- 419.944  	chisq 1.42869 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 265084 +- 338.871  	chisq 2.69399 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 264967 +- 285.534  	chisq 3.10096 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 264803 +- 247.522  	chisq 4.44225 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 265057 +- 218.949  	chisq 9.29123 (9 df)
+  265.06 ±   0.22 ·10⁺⁰³ (1.82mi) ┃    66.8 ±    2.3 ·10⁺⁰³ (23.6mi) ┃
+┃   31 -    32 ┃  69.037 ±  0.016 ·10⁺⁰³ (10.8mi) ┃ -64.145 ±  0.043 ·10⁺⁰³ (1.02mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -212052 +- 41699.2  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -182340 +- 32262.2  	chisq 1.26483 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -211248 +- 10650.6  	chisq 2.16591 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -218241 +- 8388.89  	chisq 3.3016 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -220846 +- 7772.62  	chisq 3.98256 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -222963 +- 6955.78  	chisq 4.35524 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -220763 +- 6081.17  	chisq 4.77996 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -222611 +- 4748.92  	chisq 5.01682 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -223345 +- 4449.03  	chisq 5.21222 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -220284 +- 3827.2  	chisq 7.03279 (9 df)
+  -220.3 ±    3.8 ·10⁺⁰³ (4.12mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 277649 +- 25599.2  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 288515 +- 4855.23  	chisq 0.186876 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 292956 +- 1703.47  	chisq 1.14105 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 289668 +- 858.637  	chisq 6.13577 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 288895 +- 572.151  	chisq 7.59133 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 289136 +- 468.428  	chisq 8.12738 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 289490 +- 387.92  	chisq 9.9411 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 289471 +- 322.891  	chisq 9.94884 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 289316 +- 276.427  	chisq 10.8113 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 289457 +- 242.049  	chisq 11.9293 (9 df)
+  289.46 ±   0.24 ·10⁺⁰³ (1.62mi) ┃    74.1 ±    3.8 ·10⁺⁰³ (17.6mi) ┃
+┃   32 -    33 ┃  75.219 ±  0.014 ·10⁺⁰³ (9.61mi) ┃ -70.891 ±  0.037 ·10⁺⁰³ (2.06mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -330296 +- 118618  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -253012 +- 27417.8  	chisq 0.448465 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -263911 +- 15021.9  	chisq 0.67427 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -263629 +- 11921  	chisq 0.675221 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -262510 +- 8597.54  	chisq 0.693588 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -254840 +- 5562.37  	chisq 2.06247 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -249692 +- 3563.4  	chisq 3.51535 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -247319 +- 3117.67  	chisq 5.40586 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -248024 +- 2846.75  	chisq 5.71315 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -248345 +- 2572.27  	chisq 5.78244 (9 df)
+  -248.3 ±    2.6 ·10⁺⁰³ (4.22mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 298968 +- 32925.4  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 320674 +- 6660.51  	chisq 0.453124 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 318726 +- 1795.53  	chisq 0.54538 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 316123 +- 976.231  	chisq 3.52852 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 316362 +- 647.562  	chisq 3.63549 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 316382 +- 494.01  	chisq 3.63791 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 316458 +- 398.443  	chisq 3.70562 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 316038 +- 332.309  	chisq 7.35202 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 315811 +- 286.667  	chisq 9.18111 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 315726 +- 252.311  	chisq 9.57686 (9 df)
+  315.73 ±   0.25 ·10⁺⁰³ (1.68mi) ┃    71.7 ±    2.6 ·10⁺⁰³ (17.6mi) ┃
+┃   33 -    34 ┃  81.278 ±  0.029 ·10⁺⁰³ (9.71mi) ┃ -76.849 ±  0.041 ·10⁺⁰³ ( 33.6s) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -78658.1 +- 69908.9  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -244248 +- 37325  	chisq 7.84757 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -249444 +- 9905.37  	chisq 7.86842 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -255980 +- 7148.28  	chisq 8.77691 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -260727 +- 5657.53  	chisq 9.95741 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -262092 +- 4724.02  	chisq 10.1495 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -266290 +- 4107.24  	chisq 13.3862 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -265249 +- 3496.64  	chisq 13.6198 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -265223 +- 3249.87  	chisq 13.6202 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -264151 +- 2826.1  	chisq 14.0668 (9 df)
+  -264.2 ±    2.8 ·10⁺⁰³ (4.35mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 295099 +- 24458.7  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 340444 +- 4881.26  	chisq 3.57975 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 343797 +- 1635.86  	chisq 4.11127 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 345676 +- 947.911  	chisq 6.09733 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 346148 +- 651.187  	chisq 6.56582 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 346147 +- 504.808  	chisq 6.56582 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 346191 +- 411.987  	chisq 6.58846 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 345767 +- 346.975  	chisq 10.2461 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 345550 +- 301.057  	chisq 11.8285 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 345479 +- 266.296  	chisq 12.0808 (9 df)
+  345.48 ±   0.27 ·10⁺⁰³ (1.85mi) ┃    85.8 ±    2.8 ·10⁺⁰³ (16.5mi) ┃
+┃   34 -    35 ┃  88.118 ±  0.086 ·10⁺⁰³ (2.71mi) ┃  -84.32 ±  0.068 ·10⁺⁰³ (2.12mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -273222 +- 50713  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -270250 +- 20258.7  	chisq 0.0040873 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -282560 +- 13872.9  	chisq 0.699408 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -292375 +- 9823.1  	chisq 1.70312 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -298376 +- 6797.97  	chisq 2.41946 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -295381 +- 5852.72  	chisq 3.16986 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -296132 +- 5774.2  	chisq 3.78885 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -295180 +- 4916.13  	chisq 3.88776 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -295880 +- 3479.64  	chisq 3.92844 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -295860 +- 2682.68  	chisq 3.92853 (9 df)
+  -295.9 ±    2.7 ·10⁺⁰³ (4.26mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 446397 +- 62475.8  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 384538 +- 6414.88  	chisq 0.990798 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 379223 +- 1976.79  	chisq 1.74953 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 380733 +- 1141.84  	chisq 2.62587 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 380045 +- 764.53  	chisq 3.28366 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 380331 +- 569.723  	chisq 3.59767 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 380481 +- 458.866  	chisq 3.79594 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 380157 +- 383.601  	chisq 5.4557 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 379888 +- 330.138  	chisq 7.35339 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 379832 +- 291.203  	chisq 7.48075 (9 df)
+  379.83 ±   0.29 ·10⁺⁰³ (1.77mi) ┃    87.8 ±    2.7 ·10⁺⁰³ (10.9mi) ┃
+┃   35 -    36 ┃  94.853 ±  0.062 ·10⁺⁰³ (4.64mi) ┃   -92.4 ±  0.062 ·10⁺⁰³ (   16s) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -214868 +- 33778.8  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -291412 +- 19618  	chisq 7.7485 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -307310 +- 12337.4  	chisq 8.83495 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -317005 +- 7033.48  	chisq 9.74981 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -320712 +- 5020.1  	chisq 10.3158 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -327827 +- 3983.53  	chisq 15.74 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -328630 +- 3514.53  	chisq 15.9233 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -328196 +- 3206.67  	chisq 16.014 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -327107 +- 3021.11  	chisq 17.0402 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -328885 +- 2787.12  	chisq 19.3661 (9 df)
+  -328.9 ±    2.8 ·10⁺⁰³ (4.29mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 423419 +- 37656.6  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 415354 +- 5711.07  	chisq 0.0469482 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 417661 +- 1873.83  	chisq 0.229746 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 419049 +- 1100.8  	chisq 1.06825 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 420360 +- 762.294  	chisq 3.79339 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 420585 +- 591.229  	chisq 4.01056 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 420763 +- 481.72  	chisq 4.28158 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 420735 +- 404.73  	chisq 4.29293 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 420554 +- 349.702  	chisq 5.08238 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 420603 +- 309.367  	chisq 5.17058 (9 df)
+   420.6 ±   0.31 ·10⁺⁰³ (1.97mi) ┃    94.2 ±    2.8 ·10⁺⁰³ (11.2mi) ┃
+┃   36 -    37 ┃ 101.779 ±  0.094 ·10⁺⁰³ (2.51mi) ┃ -98.937 ±  0.039 ·10⁺⁰³ (2.03mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -259997 +- 59839.4  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -311797 +- 44225.7  	chisq 1.65139 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -363496 +- 17474  	chisq 3.27065 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -360898 +- 12512.6  	chisq 3.31599 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -382457 +- 8321.22  	chisq 8.6385 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -379513 +- 6125.33  	chisq 8.91174 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -373039 +- 4741.66  	chisq 11.6995 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -376245 +- 4109.6  	chisq 13.5377 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -374092 +- 3621.03  	chisq 14.7653 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -373677 +- 3261.31  	chisq 14.835 (9 df)
+  -373.7 ±    3.3 ·10⁺⁰³ (4.48mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 412417 +- 42303.3  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 466828 +- 14900.5  	chisq 1.88862 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 469712 +- 3755.42  	chisq 1.92862 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 473762 +- 1639.27  	chisq 3.36545 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 472616 +- 978.52  	chisq 4.12372 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 472031 +- 691.352  	chisq 4.83819 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 471726 +- 541.252  	chisq 5.34053 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 471434 +- 448.36  	chisq 6.26909 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 471595 +- 385.824  	chisq 6.76564 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 471644 +- 339.488  	chisq 6.83609 (9 df)
+  471.64 ±   0.34 ·10⁺⁰³ (1.85mi) ┃   100.8 ±    3.3 ·10⁺⁰³ (10.9mi) ┃
+┃   37 -    38 ┃ 107.995 ±  0.013 ·10⁺⁰³ (4.57mi) ┃-105.342 ±  0.055 ·10⁺⁰³ (2.14mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -526048 +- 169071  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -409121 +- 22945.3  	chisq 0.487262 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -404475 +- 18181.9  	chisq 0.597446 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -414204 +- 17415.7  	chisq 4.06777 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -408901 +- 16879.4  	chisq 5.59675 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -408538 +- 14369.6  	chisq 5.59843 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -410972 +- 10723.4  	chisq 5.66315 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -415157 +- 10032.8  	chisq 6.88531 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -423468 +- 8475.66  	chisq 9.28193 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -428280 +- 6269.56  	chisq 9.99374 (9 df)
+  -428.3 ±    6.3 ·10⁺⁰³ (4.29mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 556457 +- 64016.1  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 541965 +- 14017.3  	chisq 0.0538287 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 540564 +- 3606.03  	chisq 0.0645332 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 540596 +- 1524.53  	chisq 0.0646322 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 540255 +- 973.795  	chisq 0.14936 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 539786 +- 724.166  	chisq 0.668049 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 540156 +- 580.163  	chisq 1.39847 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 539866 +- 484.522  	chisq 2.22609 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 539894 +- 417.603  	chisq 2.23878 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 539704 +- 368.71  	chisq 3.17832 (9 df)
+   539.7 ±   0.37 ·10⁺⁰³ (2.01mi) ┃   114.1 ±    6.3 ·10⁺⁰³ (  13mi) ┃
+┃   38 -    39 ┃ 112.527 ±  0.099 ·10⁺⁰³ (2.62mi) ┃-105.655 ±  0.078 ·10⁺⁰³ (1.07mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -639618 +- 161761  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -652636 +- 103131  	chisq 0.0109124 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -657557 +- 93171.7  	chisq 0.023296 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -549672 +- 31646.6  	chisq 1.53892 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -565422 +- 26072.9  	chisq 2.31001 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -577197 +- 17347.1  	chisq 2.67594 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -554464 +- 10656.7  	chisq 5.43421 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -538217 +- 6485.92  	chisq 9.12591 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -542460 +- 5134.24  	chisq 10.272 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -540697 +- 4295.91  	chisq 10.6654 (9 df)
+  -540.7 ±    4.3 ·10⁺⁰³ (4.39mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 687123 +- 71865.4  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 643348 +- 9009.2  	chisq 0.376962 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 641595 +- 2814.09  	chisq 0.418944 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 641088 +- 1477.89  	chisq 0.463633 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 640700 +- 995.666  	chisq 0.589797 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 640840 +- 778.948  	chisq 0.640834 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 641528 +- 635.938  	chisq 2.97895 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 641569 +- 534.198  	chisq 2.99299 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 641674 +- 461.71  	chisq 3.14658 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 641631 +- 408.276  	chisq 3.18804 (9 df)
+  641.63 ±   0.41 ·10⁺⁰³ (1.96mi) ┃   107.8 ±    4.3 ·10⁺⁰³ (  10mi) ┃
+┃   39 -    40 ┃  112.34 ±   0.11 ·10⁺⁰³ (2.32mi) ┃ -73.116 ±  0.044 ·10⁺⁰³ (2.08mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -777569 +- 171798  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -881062 +- 124661  	chisq 0.76645 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -807955 +- 39489.9  	chisq 1.14873 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -743238 +- 12112.4  	chisq 4.11343 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -733639 +- 10884.4  	chisq 7.3759 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -735369 +- 9004.71  	chisq 7.45595 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -734859 +- 7087.63  	chisq 7.4644 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -728533 +- 5484.98  	chisq 9.45075 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -725309 +- 4862.4  	chisq 11.0636 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -725482 +- 4236  	chisq 11.0689 (9 df)
+  -725.5 ±    4.2 ·10⁺⁰³ (5.16mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 800011 +- 72922.5  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 800687 +- 10874.3  	chisq 8.7886e-05 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 802586 +- 3477.46  	chisq 0.0340731 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 803338 +- 1758.21  	chisq 0.0968378 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 803169 +- 1167.94  	chisq 0.113356 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 802679 +- 888.089  	chisq 0.530865 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 802899 +- 718.287  	chisq 0.708708 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 802848 +- 603.985  	chisq 0.725763 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 803116 +- 522.538  	chisq 1.5093 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 802971 +- 461.981  	chisq 1.86141 (9 df)
+  802.97 ±   0.46 ·10⁺⁰³ (2.17mi) ┃   116.7 ±    4.3 ·10⁺⁰³ (11.7mi) ┃
+┃   40 -    41 ┃ 104.013 ±  0.059 ·10⁺⁰³ (9.79mi) ┃-60.8081 ± 0.0076 ·10⁺⁰³ (   7mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -494882 +- 55169.1  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -603640 +- 38423.8  	chisq 7.54711 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -659358 +- 24663.8  	chisq 11.1234 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -677676 +- 18943.8  	chisq 12.4687 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -674626 +- 18745.5  	chisq 13.7136 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -681270 +- 15325  	chisq 14.0923 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -683460 +- 12623  	chisq 14.1558 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -683699 +- 11048.6  	chisq 14.1574 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -681470 +- 8399.24  	chisq 14.2538 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -677975 +- 5519.59  	chisq 14.5586 (9 df)
+    -678 ±    5.5 ·10⁺⁰³ (5.31mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 679025 +- 60351.8  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 752426 +- 12346.2  	chisq 1.54379 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 734985 +- 3494.7  	chisq 3.71333 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 738382 +- 1709.47  	chisq 4.95549 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 738311 +- 1102.64  	chisq 4.95848 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 739116 +- 823.327  	chisq 6.16533 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 738880 +- 659.858  	chisq 6.39508 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 739168 +- 553.968  	chisq 7.03753 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 739244 +- 478.7  	chisq 7.11221 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 739021 +- 422.484  	chisq 8.09402 (9 df)
+  739.02 ±   0.42 ·10⁺⁰³ (2.06mi) ┃   104.3 ±    5.5 ·10⁺⁰³ (24.2mi) ┃
+┃   41 -    42 ┃  88.818 ±  0.066 ·10⁺⁰³ (3.67mi) ┃-100.716 ±  0.064 ·10⁺⁰³ (6.24mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -251367 +- 44874.4  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -292904 +- 17494.8  	chisq 1.01038 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -297759 +- 10424.8  	chisq 1.12978 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -296971 +- 9348.2  	chisq 1.15896 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -292336 +- 8271.43  	chisq 2.29141 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -290761 +- 7259.18  	chisq 2.44905 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -289177 +- 5497.02  	chisq 2.56068 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -294851 +- 4715.11  	chisq 6.59247 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -296862 +- 4034.31  	chisq 7.27108 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -296611 +- 3919.07  	chisq 7.3399 (9 df)
+  -296.6 ±    3.9 ·10⁺⁰³ ( 4.2mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 452480 +- 56254  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 414203 +- 5969.4  	chisq 0.468267 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 407144 +- 1884.8  	chisq 2.02148 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 404878 +- 990.072  	chisq 4.01771 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 404410 +- 672.62  	chisq 4.43249 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 404611 +- 512.632  	chisq 4.64513 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 404534 +- 416.466  	chisq 4.71126 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 404792 +- 354.225  	chisq 6.10066 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 404825 +- 308.976  	chisq 6.13612 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 404983 +- 274.522  	chisq 7.38322 (9 df)
+  404.98 ±   0.27 ·10⁺⁰³ (1.79mi) ┃    96.5 ±    3.9 ·10⁺⁰³ (15.9mi) ┃
+┃   42 -    43 ┃  72.559 ±  0.017 ·10⁺⁰³ (12.2mi) ┃ -86.428 ±  0.048 ·10⁺⁰³ (10.9mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -217571 +- 68515.2  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -142825 +- 19003.7  	chisq 1.28935 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -134640 +- 13970.1  	chisq 1.69299 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -136495 +- 8698.35  	chisq 1.72177 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -140784 +- 6920.57  	chisq 2.3845 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -138996 +- 4736.73  	chisq 2.51017 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -134645 +- 3147.93  	chisq 4.0209 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -134570 +- 3091.34  	chisq 4.03691 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -134646 +- 2771.16  	chisq 4.03996 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -135084 +- 2251.98  	chisq 4.11361 (9 df)
+  -135.1 ±    2.3 ·10⁺⁰³ (3.65mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 226749 +- 27439.3  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 224155 +- 3427.31  	chisq 0.00908088 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 224582 +- 1194.58  	chisq 0.0267666 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 224979 +- 651.165  	chisq 0.183737 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 224529 +- 444.146  	chisq 1.07573 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 224579 +- 339.064  	chisq 1.10547 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 224851 +- 276.048  	chisq 3.01989 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 225035 +- 235.561  	chisq 4.6564 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 225119 +- 205.538  	chisq 5.18426 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 225290 +- 182.364  	chisq 8.45436 (9 df)
+  225.29 ±   0.18 ·10⁺⁰³ (1.38mi) ┃    76.3 ±    2.3 ·10⁺⁰³ (28.1mi) ┃
+┃   43 -    44 ┃  58.615 ±   0.03 ·10⁺⁰³ (10.8mi) ┃ -67.238 ±  0.037 ·10⁺⁰³ ( 5.1mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -100332 +- 31793.7  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -69732.2 +- 6624.04  	chisq 0.968373 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -69805.2 +- 5629.02  	chisq 0.968811 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -71916.6 +- 5515.19  	chisq 4.48308 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -74513.4 +- 5307.04  	chisq 7.47656 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -76796.1 +- 4309.13  	chisq 8.01958 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -78171.7 +- 3972.57  	chisq 8.69849 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -78261.5 +- 3205.53  	chisq 8.69995 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -77520.5 +- 3162.29  	chisq 10.694 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -78471.8 +- 2631.81  	chisq 10.9884 (9 df)
+   -78.5 ±    2.6 ·10⁺⁰³ (2.95mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 137862 +- 9648.18  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 142913 +- 2132.38  	chisq 0.288169 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 144127 +- 792.885  	chisq 0.66402 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 143720 +- 437.397  	chisq 1.0428 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 143657 +- 304.489  	chisq 1.08289 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 143954 +- 237.055  	chisq 3.50556 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 144088 +- 195.848  	chisq 4.5148 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 144165 +- 167.467  	chisq 5.07871 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 144141 +- 146.395  	chisq 5.16593 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 144199 +- 130.489  	chisq 5.93708 (9 df)
+   144.2 ±   0.13 ·10⁺⁰³ (1.15mi) ┃    57.1 ±    2.6 ·10⁺⁰³ (  20mi) ┃
+┃   44 -    45 ┃  47.502 ±  0.021 ·10⁺⁰³ (10.1mi) ┃  -52.43 ±  0.051 ·10⁺⁰³ (4.97mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -47904.3 +- 31092.6  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -54404 +- 7372.75  	chisq 0.0463033 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -49302.8 +- 4156.26  	chisq 0.748041 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -48910.1 +- 2720.84  	chisq 0.763665 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -48195.1 +- 2140.7  	chisq 0.944925 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -48856.5 +- 2103.59  	chisq 3.72214 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -48096.6 +- 2023.17  	chisq 5.46227 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -48345.3 +- 1996.34  	chisq 6.03565 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -48383.2 +- 1806.29  	chisq 6.03765 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -47390.7 +- 1503.86  	chisq 7.02167 (9 df)
+   -47.4 ±    1.5 ·10⁺⁰³ (2.78mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 125986 +- 32050.4  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 96888.7 +- 2072.52  	chisq 0.827693 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 99464.2 +- 788.115  	chisq 2.63307 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 100464 +- 416.072  	chisq 4.86206 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 100691 +- 266.965  	chisq 5.36951 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 100639 +- 197.817  	chisq 5.45244 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 100461 +- 158.13  	chisq 7.70947 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 100512 +- 133.273  	chisq 8.07262 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 100516 +- 115.402  	chisq 8.07567 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 100493 +- 102.059  	chisq 8.25139 (9 df)
+  100.49 ±    0.1 ·10⁺⁰³ (1.18mi) ┃    48.2 ±    1.5 ·10⁺⁰³ (  19mi) ┃
+┃   45 -    46 ┃ 38.8285 ± 0.0054 ·10⁺⁰³ (38.2mi) ┃ -41.658 ±  0.014 ·10⁺⁰³ (9.59mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -21329.3 +- 13378.2  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -19011.9 +- 10506.4  	chisq 0.0782947 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -21809 +- 7662.19  	chisq 0.229705 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -29174.3 +- 3299.2  	chisq 1.36399 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -27311.1 +- 2246.36  	chisq 1.95855 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -27657 +- 2058.85  	chisq 2.10676 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -28719.4 +- 1989.77  	chisq 6.14286 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -30150.4 +- 1616.61  	chisq 7.66435 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -29419.8 +- 1333.06  	chisq 8.30245 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -29758.8 +- 1066.43  	chisq 8.48207 (9 df)
+   -29.8 ±    1.1 ·10⁺⁰³ ( 3.2mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 73537.7 +- 7455.28  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 72882.7 +- 1019.46  	chisq 0.00786682 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 74034.9 +- 400.85  	chisq 1.51881 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 73837.6 +- 240.197  	chisq 1.89667 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 73849.6 +- 175.225  	chisq 1.90203 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 73799.6 +- 138.864  	chisq 2.12142 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 73762.9 +- 115.466  	chisq 2.34716 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 73809.7 +- 99.6222  	chisq 2.99047 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 73834.5 +- 87.5864  	chisq 3.26198 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 73868.4 +- 78.3533  	chisq 4.01157 (9 df)
+  73.868 ±  0.078 ·10⁺⁰³ (1.02mi) ┃    41.3 ±    1.1 ·10⁺⁰³ (  52mi) ┃
+┃   46 -    47 ┃   32.06 ±  0.013 ·10⁺⁰³ (18.9mi) ┃ -33.619 ±  0.015 ·10⁺⁰³ (9.51mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -32746.9 +- 17937  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -22633.2 +- 5877.56  	chisq 0.356161 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -21890 +- 3081.06  	chisq 0.378205 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -21394.2 +- 2084.78  	chisq 0.425985 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -22067.3 +- 1951.3  	chisq 1.26705 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -22843.7 +- 1735.52  	chisq 2.02488 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -23289.4 +- 1698.45  	chisq 3.58522 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -22039.8 +- 1462.28  	chisq 5.67714 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -21934.8 +- 1352.41  	chisq 5.71276 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -22614 +- 1227.94  	chisq 7.14887 (9 df)
+   -22.6 ±    1.2 ·10⁺⁰³ (2.54mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 62505.1 +- 5040.88  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 56989.1 +- 809.951  	chisq 1.22912 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 56435.1 +- 327.822  	chisq 1.78863 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 56184.3 +- 198.056  	chisq 2.71007 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 56202.9 +- 144.01  	chisq 2.72874 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 56255.5 +- 114.711  	chisq 3.09305 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 56232.1 +- 95.5651  	chisq 3.22872 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 56255.5 +- 81.8864  	chisq 3.45489 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 56264.6 +- 72.0819  	chisq 3.50994 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 56229.9 +- 64.268  	chisq 4.64015 (9 df)
+   56.23 ±  0.064 ·10⁺⁰³ ( 59.9s) ┃    32.1 ±    1.2 ·10⁺⁰³ (  32mi) ┃
+┃   47 -    48 ┃ 26.6765 ± 0.0022 ·10⁺⁰³ (18.6mi) ┃ -27.413 ±  0.014 ·10⁺⁰³ (9.31mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 1153.05 +- 15422.2  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 1802.16 +- 10774.2  	chisq 0.00346035 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -7865.46 +- 3803.26  	chisq 0.923211 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -14381.3 +- 2130.58  	chisq 5.20073 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -16290.4 +- 1549.3  	chisq 6.90463 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -16026.7 +- 1220.3  	chisq 6.98094 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -15605.1 +- 1067.62  	chisq 7.4899 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -14879.8 +- 920.221  	chisq 9.28502 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -14484.4 +- 829.62  	chisq 10.2715 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -14711.7 +- 811.198  	chisq 11.9811 (9 df)
+  -14.71 ±   0.81 ·10⁺⁰³ (2.53mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 50867.1 +- 10313.5  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 43858.2 +- 1130.07  	chisq 0.46746 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 43395.1 +- 352.161  	chisq 0.653448 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 43767.6 +- 189.893  	chisq 2.23091 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 43860.4 +- 129.723  	chisq 2.67873 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 43868.9 +- 100.068  	chisq 2.68953 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 43837.2 +- 82.2583  	chisq 2.99952 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 43815.2 +- 69.9482  	chisq 3.25863 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 43836.2 +- 60.9844  	chisq 3.63525 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 43804.3 +- 54.1145  	chisq 4.92448 (9 df)
+  43.804 ±  0.054 ·10⁺⁰³ ( 58.9s) ┃   28.36 ±   0.81 ·10⁺⁰³ (31.4mi) ┃
+┃   48 -    49 ┃   22.43 ±  0.012 ·10⁺⁰³ (36.4mi) ┃ -22.694 ±  0.012 ·10⁺⁰³ (9.19mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -8111.18 +- 4275.09  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -9288.89 +- 3013.96  	chisq 0.150885 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -11010.4 +- 1743.46  	chisq 0.641174 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -11152.6 +- 1725.56  	chisq 0.96718 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -10355.9 +- 1573.77  	chisq 2.23475 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -10589.5 +- 1506.32  	chisq 2.49751 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -10922.8 +- 1432.65  	chisq 3.0106 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -11415.4 +- 1250.29  	chisq 3.50646 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -10874.4 +- 1205.02  	chisq 6.13968 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -10762.4 +- 1140.48  	chisq 6.22245 (9 df)
+   -10.8 ±    1.1 ·10⁺⁰³ ( 2.5mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 34731 +- 2140.18  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 34558.2 +- 408.52  	chisq 0.00676698 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 34356.7 +- 195.866  	chisq 0.322586 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 34223.6 +- 127.724  	chisq 1.12618 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 34367.5 +- 96.6771  	chisq 4.09794 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 34360.6 +- 77.9863  	chisq 4.11266 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 34372.6 +- 65.6433  	chisq 4.19408 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 34406.3 +- 56.6411  	chisq 5.22401 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 34443.1 +- 49.7579  	chisq 7.08072 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 34454.5 +- 44.468  	chisq 7.3395 (9 df)
+  34.454 ±  0.044 ·10⁺⁰³ ( 57.1s) ┃    23.4 ±    1.1 ·10⁺⁰³ (49.1mi) ┃
+┃   49 -    50 ┃ 18.9355 ± 0.0034 ·10⁺⁰³ (18.7mi) ┃-18.9499 ± 0.0072 ·10⁺⁰³ (9.12mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -3908.98 +- 3552.28  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -5705.41 +- 2559.56  	chisq 0.531893 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -4786.62 +- 1804.24  	chisq 0.78801 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -3610.4 +- 1537.04  	chisq 2.33764 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -4277.52 +- 1435.85  	chisq 3.81709 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -4029.48 +- 1335.66  	chisq 4.03866 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -4216.3 +- 1286.32  	chisq 4.30846 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -6900.77 +- 1015.3  	chisq 15.8608 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -6955.48 +- 979.71  	chisq 15.9029 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -6115.34 +- 900.313  	chisq 20.6316 (9 df)
+   -6.12 ±    0.9 ·10⁺⁰³ (2.47mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 25723.1 +- 1412.43  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 26728.3 +- 341.93  	chisq 0.538033 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 27223.6 +- 165.311  	chisq 3.27634 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 27047.7 +- 107.948  	chisq 5.25133 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 27110.7 +- 80.3521  	chisq 6.01607 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 27164.2 +- 65.1848  	chisq 7.30882 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 27136 +- 55.1675  	chisq 7.96837 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 27174.3 +- 47.9673  	chisq 9.94478 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 27189.6 +- 42.2514  	chisq 10.3982 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 27190.7 +- 37.7412  	chisq 10.4019 (9 df)
+  27.191 ±  0.038 ·10⁺⁰³ (1.28mi) ┃   21.06 ±    0.9 ·10⁺⁰³ (31.5mi) ┃
+┃   50 -    51 ┃  16.085 ±  0.013 ·10⁺⁰³ (4.74mi) ┃-15.9751 ± 0.0063 ·10⁺⁰³ (4.48mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -10964.4 +- 4340.5  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -10831.7 +- 3010.8  	chisq 0.00180226 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -8559.92 +- 1932.79  	chisq 0.970193 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -7334.52 +- 1579.18  	chisq 2.17936 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -5998.76 +- 1402.07  	chisq 5.55846 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -5709.61 +- 1380.07  	chisq 6.92444 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -4906.3 +- 1266.5  	chisq 9.07141 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -4809.97 +- 986.29  	chisq 9.08611 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -4695.65 +- 875.068  	chisq 9.14924 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -5360.52 +- 821.111  	chisq 13.9793 (9 df)
+   -5.36 ±   0.82 ·10⁺⁰³ (2.36mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 21531.9 +- 1102.94  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 21590.5 +- 237.043  	chisq 0.00295822 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 21707 +- 124.018  	chisq 0.335532 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 21627.1 +- 84.7301  	chisq 1.11383 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 21672.7 +- 64.6572  	chisq 1.80775 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 21673.9 +- 52.7724  	chisq 1.80889 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 21636.9 +- 45.0444  	chisq 3.62511 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 21670.3 +- 39.2536  	chisq 5.90948 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 21671.5 +- 34.8012  	chisq 5.91411 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 21659.8 +- 31.1825  	chisq 6.48581 (9 df)
+   21.66 ±  0.031 ·10⁺⁰³ ( 52.9s) ┃   16.41 ±   0.82 ·10⁺⁰³ (12.5mi) ┃
+┃   51 -    52 ┃ 13.7508 ± 0.0071 ·10⁺⁰³ (17.4mi) ┃-13.5112 ± 0.0088 ·10⁺⁰³ (1.17mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -2967.29 +- 2508.43  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -3270.85 +- 2494.31  	chisq 1.30424 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -1467.01 +- 2181.22  	chisq 3.52701 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -2122.07 +- 2071.6  	chisq 4.44748 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -2367.61 +- 2039.45  	chisq 4.90365 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -2365.96 +- 1454.88  	chisq 4.90365 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -2980 +- 1394.06  	chisq 7.07986 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -2552.34 +- 1230.82  	chisq 7.50667 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -1295.65 +- 832.9  	chisq 9.42982 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -1715.17 +- 763.439  	chisq 11.017 (9 df)
+   -1.72 ±   0.76 ·10⁺⁰³ (2.35mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 18565.4 +- 1051.11  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 17756.4 +- 180.514  	chisq 0.610278 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 17984.4 +- 98.5934  	chisq 2.88241 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 17914.8 +- 68.653  	chisq 3.85009 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 17860.3 +- 53.7081  	chisq 5.47326 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 17882.1 +- 45.1362  	chisq 6.03783 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 17889.2 +- 38.6738  	chisq 6.12982 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 17920.2 +- 33.5989  	chisq 8.7465 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 17919.2 +- 29.6706  	chisq 8.75038 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 17916 +- 26.5968  	chisq 8.80902 (9 df)
+  17.916 ±  0.027 ·10⁺⁰³ (   52s) ┃   16.44 ±   0.76 ·10⁺⁰³ (21.8mi) ┃
+┃   52 -    53 ┃ 11.8368 ± 0.0015 ·10⁺⁰³ (9.09mi) ┃ -11.449 ±   0.01 ·10⁺⁰³ (4.41mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 11424.3 +- 10121.8  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 7117.32 +- 9609.26  	chisq 1.83438 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 1082.72 +- 2800.52  	chisq 2.26536 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -1964.54 +- 2279.71  	chisq 5.77494 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -2464.09 +- 2245.9  	chisq 7.40605 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -2966.97 +- 1602.02  	chisq 7.50812 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -2355.7 +- 970.219  	chisq 7.73804 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -1558.29 +- 674.467  	chisq 9.04529 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -1497.49 +- 568.017  	chisq 9.07324 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -1606.79 +- 466.167  	chisq 9.18666 (9 df)
+   -1.61 ±   0.47 ·10⁺⁰³ (2.36mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 14894.3 +- 840.422  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 15312.9 +- 167.047  	chisq 0.258345 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 15291.8 +- 88.1156  	chisq 0.280543 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 15236.9 +- 60.9919  	chisq 1.02504 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 15231.8 +- 47.1288  	chisq 1.04209 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 15245.2 +- 39.045  	chisq 1.30032 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 15228.5 +- 33.3901  	chisq 1.98609 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 15236.4 +- 29.0444  	chisq 2.21768 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 15235.9 +- 25.7097  	chisq 2.21908 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 15231.6 +- 23.0811  	chisq 2.36589 (9 df)
+  15.232 ±  0.023 ·10⁺⁰³ (1.23mi) ┃   14.01 ±   0.47 ·10⁺⁰³ (17.1mi) ┃
+┃   53 -    54 ┃ 10.2215 ± 0.0074 ·10⁺⁰³ (17.6mi) ┃ -9.9181 ± 0.0097 ·10⁺⁰³ (8.73mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -48384.9 +- 41311.5  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -7960.61 +- 3964.04  	chisq 0.966407 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -345.332 +- 2552.08  	chisq 7.26956 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -902.894 +- 2139.51  	chisq 7.43017 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -703.046 +- 2103.49  	chisq 7.6915 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -552.76 +- 1967.97  	chisq 7.73244 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -927.589 +- 1788.61  	chisq 7.94096 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -735.952 +- 1574.43  	chisq 7.99194 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -1070.27 +- 1545.35  	chisq 9.22425 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -2343.72 +- 1221.63  	chisq 11.0347 (9 df)
+    -2.3 ±    1.2 ·10⁺⁰³ (2.34mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 12215.8 +- 660.507  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 13112.3 +- 141.457  	chisq 1.93069 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 13105.3 +- 76.5017  	chisq 1.93418 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 13066.3 +- 53.5454  	chisq 2.44377 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 13089.8 +- 41.7378  	chisq 2.93657 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 13134.6 +- 35.2039  	chisq 6.92202 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 13120.3 +- 30.2946  	chisq 7.56173 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 13127.1 +- 26.3526  	chisq 7.7691 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 13117.2 +- 23.3253  	chisq 8.41067 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 13104.6 +- 20.9255  	chisq 9.92112 (9 df)
+  13.105 ±  0.021 ·10⁺⁰³ ( 50.8s) ┃    11.1 ±    1.2 ·10⁺⁰³ (29.6mi) ┃
+┃   54 -    55 ┃  8.8698 ± 0.0034 ·10⁺⁰³ (34.9mi) ┃  -8.406 ± 0.0039 ·10⁺⁰³ (1.14mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -11004.6 +- 4202.5  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -10758.2 +- 3814.44  	chisq 0.0195112 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -1883.89 +- 1437.66  	chisq 6.32834 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -1537.42 +- 1265.3  	chisq 6.58601 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -1383.46 +- 1135.23  	chisq 6.66193 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -1833.07 +- 836.899  	chisq 7.00552 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -1497.07 +- 646.42  	chisq 7.40509 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -898.706 +- 577.552  	chisq 11.6527 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -767.761 +- 532.005  	chisq 11.992 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -1308.96 +- 419.606  	chisq 14.7303 (9 df)
+   -1.31 ±   0.42 ·10⁺⁰³ (2.29mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 12282.9 +- 630.318  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 11293.3 +- 119.255  	chisq 2.55659 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 11336.5 +- 67.3174  	chisq 2.7491 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 11367.8 +- 50.0239  	chisq 3.23307 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 11368.9 +- 39.1999  	chisq 3.23429 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 11386.7 +- 32.4434  	chisq 3.88911 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 11393.6 +- 27.5744  	chisq 4.05158 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 11382.3 +- 23.7951  	chisq 4.70154 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 11386.3 +- 20.9722  	chisq 4.82668 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 11382.2 +- 18.7605  	chisq 5.01737 (9 df)
+  11.382 ±  0.019 ·10⁺⁰³ ( 49.5s) ┃   10.54 ±   0.42 ·10⁺⁰³ (39.1mi) ┃
+┃   55 -    56 ┃  7.7337 ± 0.0042 ·10⁺⁰³ (17.4mi) ┃ -7.4696 ± 0.0074 ·10⁺⁰³ (8.61mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 784.493 +- 3623.59  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -1762 +- 1278.99  	chisq 0.564148 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -1260.67 +- 1032.59  	chisq 1.0054 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -1603.51 +- 764.987  	chisq 1.24975 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -1773.38 +- 747.746  	chisq 2.35614 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -1680.73 +- 649.343  	chisq 2.41858 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -1782.32 +- 534.729  	chisq 2.49463 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -1365.82 +- 467.067  	chisq 5.0538 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -1279.77 +- 451.55  	chisq 5.57325 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -1284.09 +- 451.529  	chisq 6.52443 (9 df)
+   -1.28 ±   0.45 ·10⁺⁰³ (2.27mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 10334.8 +- 562.429  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 10038.3 +- 116.012  	chisq 0.29026 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 10021.7 +- 62.1921  	chisq 0.318998 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 9982.44 +- 46.2865  	chisq 1.21123 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 9981.46 +- 36.2587  	chisq 1.21237 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 9965.12 +- 29.9215  	chisq 1.84916 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 9959.51 +- 25.4304  	chisq 1.97596 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 9952.07 +- 22.1676  	chisq 2.33189 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 9943.85 +- 19.55  	chisq 2.95112 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 9938.23 +- 17.4085  	chisq 3.34968 (9 df)
+   9.938 ±  0.017 ·10⁺⁰³ ( 49.6s) ┃    8.92 ±   0.45 ·10⁺⁰³ (29.1mi) ┃
+┃   56 -    57 ┃  6.7454 ± 0.0038 ·10⁺⁰³ (17.9mi) ┃ -6.3102 ±  0.002 ·10⁺⁰³ (4.34mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 2159.91 +- 2456.38  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] -4.27337 +- 1532.44  	chisq 1.27086 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 228.295 +- 1432.73  	chisq 1.4538 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 1130.56 +- 982.563  	chisq 2.20253 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -118.134 +- 849.437  	chisq 8.59581 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -401.61 +- 613.473  	chisq 8.8286 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -907.786 +- 561.593  	chisq 13.0314 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -1061.71 +- 452.668  	chisq 13.2459 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -968.757 +- 399.478  	chisq 13.4365 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -961.01 +- 367.291  	chisq 13.439 (9 df)
+    -960 ±    370        (2.25mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 8505.22 +- 476.947  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 8744.45 +- 102.26  	chisq 0.26372 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 8779.51 +- 55.7407  	chisq 0.430948 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 8775.43 +- 41.5009  	chisq 0.442993 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 8711.38 +- 32.2241  	chisq 6.44184 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 8718.03 +- 26.263  	chisq 6.56863 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 8721.79 +- 22.6927  	chisq 6.6497 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 8714.52 +- 19.7632  	chisq 7.07485 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 8716.52 +- 17.3611  	chisq 7.11961 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 8713.7 +- 15.5281  	chisq 7.25108 (9 df)
+   8.714 ±  0.016 ·10⁺⁰³ ( 49.2s) ┃    8.19 ±   0.37 ·10⁺⁰³ (25.3mi) ┃
+┃   57 -    58 ┃  5.8926 ± 0.0051 ·10⁺⁰³ (17.3mi) ┃ -5.6326 ± 0.0027 ·10⁺⁰³ (4.33mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 1323.14 +- 1536.97  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 1093.12 +- 1227.93  	chisq 0.0619215 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 185.481 +- 1090.8  	chisq 2.65278 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -16.9221 +- 764.539  	chisq 2.72046 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -81.3283 +- 605.236  	chisq 2.73947 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 170.763 +- 502.326  	chisq 3.29703 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -87.3334 +- 421.877  	chisq 4.19296 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -241.315 +- 373.512  	chisq 4.80932 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -136.265 +- 339.587  	chisq 5.26549 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -46.2326 +- 323.782  	chisq 6.03858 (9 df)
+     -50 ±    320        (2.28mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 8422.08 +- 486.664  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 7820.33 +- 88.4955  	chisq 1.5812 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 7765.07 +- 49.9585  	chisq 2.15342 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 7734.28 +- 35.4332  	chisq 2.91758 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 7720.5 +- 27.6332  	chisq 3.30361 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 7721.58 +- 23.2423  	chisq 3.3088 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 7706.59 +- 19.9788  	chisq 4.90104 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 7704.86 +- 17.7831  	chisq 4.93746 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 7711 +- 15.8944  	chisq 5.53073 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 7706.03 +- 14.1943  	chisq 6.01341 (9 df)
+   7.706 ±  0.014 ·10⁺⁰³ ( 48.7s) ┃    7.92 ±   0.32 ·10⁺⁰³ (24.7mi) ┃
+┃   58 -    59 ┃  5.1669 ± 0.0037 ·10⁺⁰³ (17.3mi) ┃-4.79942 ± 0.00097 ·10⁺⁰³ (4.28mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 1722.06 +- 3892.59  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 1012.45 +- 2087.04  	chisq 0.0466395 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] -164.717 +- 963.604  	chisq 0.450971 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -1415.31 +- 650.635  	chisq 3.54671 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] -1264.72 +- 582.06  	chisq 3.81498 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -1058.66 +- 570.633  	chisq 7.03872 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -1010.03 +- 549.172  	chisq 7.13715 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -600.016 +- 504.062  	chisq 10.6755 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -585.179 +- 503.853  	chisq 11.721 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -471.191 +- 462.503  	chisq 12.0461 (9 df)
+    -470 ±    460        (2.22mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 6592.06 +- 387.095  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 6885.46 +- 88.2465  	chisq 0.605962 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 6919.81 +- 47.6897  	chisq 0.820044 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 6884.88 +- 33.0973  	chisq 1.85518 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 6845.38 +- 25.7128  	chisq 5.4472 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 6851.31 +- 22.0313  	chisq 5.64689 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 6846.65 +- 19.0146  	chisq 5.8218 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 6834.26 +- 16.3654  	chisq 7.46072 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 6839.91 +- 14.3897  	chisq 7.98646 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 6827.99 +- 12.8218  	chisq 11.3159 (9 df)
+   6.828 ±  0.013 ·10⁺⁰³ ( 48.8s) ┃    6.72 ±   0.46 ·10⁺⁰³ (24.6mi) ┃
+┃   59 -    60 ┃  4.5282 ± 0.0024 ·10⁺⁰³ (33.8mi) ┃ -4.1393 ± 0.0024 ·10⁺⁰³ (4.25mi) ┃Vegas input parameters:
+  ndim 10
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 50000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] -9501.97 +- 5834.61  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 982.186 +- 1364.71  	chisq 3.41568 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 1392.02 +- 1127.85  	chisq 3.70018 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] -349.465 +- 823.596  	chisq 8.80805 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 147.293 +- 680.049  	chisq 9.95133 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] -350.379 +- 534.093  	chisq 11.349 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] -575.271 +- 478.531  	chisq 12.2479 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] -599.981 +- 429.103  	chisq 12.2615 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] -535.047 +- 407.148  	chisq 12.4912 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] -837.807 +- 307.793  	chisq 13.7816 (9 df)
+    -840 ±    310        (2.22mi) ┃Vegas input parameters:
+  ndim 8
+  ncomp 1
+  nvec 1
+  epsrel 0
+  epsabs 0
+  flags 10
+  seed 123456
+  mineval 5000000
+  maxeval 50000000
+  nstart 1000000
+  nincrease 1000000
+  nbatch 5000
+  gridno 0
+  statefile ""
+
+Iteration 1:  1000000 integrand evaluations so far
+[1] 5963.66 +- 353.141  	chisq 0 (0 df)
+
+Iteration 2:  3000000 integrand evaluations so far
+[1] 6104.2 +- 78.7057  	chisq 0.166647 (1 df)
+
+Iteration 3:  6000000 integrand evaluations so far
+[1] 6076.67 +- 42.4719  	chisq 0.339288 (2 df)
+
+Iteration 4:  10000000 integrand evaluations so far
+[1] 6087.6 +- 31.5709  	chisq 0.487332 (3 df)
+
+Iteration 5:  15000000 integrand evaluations so far
+[1] 6046.99 +- 24.6789  	chisq 4.74012 (4 df)
+
+Iteration 6:  21000000 integrand evaluations so far
+[1] 6044.95 +- 20.6472  	chisq 4.76294 (5 df)
+
+Iteration 7:  28000000 integrand evaluations so far
+[1] 6038.21 +- 17.5959  	chisq 5.15301 (6 df)
+
+Iteration 8:  36000000 integrand evaluations so far
+[1] 6032.24 +- 15.118  	chisq 5.59246 (7 df)
+
+Iteration 9:  45000000 integrand evaluations so far
+[1] 6042.93 +- 13.4279  	chisq 7.96463 (8 df)
+
+Iteration 10:  55000000 integrand evaluations so far
+[1] 6028.41 +- 12.0011  	chisq 13.7819 (9 df)
+   6.028 ±  0.012 ·10⁺⁰³ ( 48.6s) ┃    5.58 ±   0.31 ·10⁺⁰³ (41.1mi) ┃
+┣━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃   25 -    60 ┃ 1.73979 ± 0.00024 ·10⁺⁰⁶ (8.35hr) ┃-1.63246 ± 0.0002 ·10⁺⁰⁶ (3.25hr) ┃  -5.704 ±  0.015 ·10⁺⁰⁶ (2.03hr) ┃  7.3925 ± 0.0012 ·10⁺⁰⁶ (49.6mi) ┃   1.796 ±  0.015 ·10⁺⁰⁶ (14.5hr) ┃
+┗━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ Summary ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+      Total cross section                     1.796 ± 0.015          nb
+         Calculation time                               14.5       hours
+              Output file                    outputs/ptl_NNLL_muR0.5_muF1.0.root            
+      Result in text file                    outputs/ptl_NNLL_muR0.5_muF1.0.txt            
+
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+
