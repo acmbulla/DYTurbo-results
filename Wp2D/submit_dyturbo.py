@@ -140,9 +140,29 @@ def modify_config(
                 f"VJquad = {vegas_params['VJquad']}\n"
             )
 
-        elif stripped.startswith("vegasncalls"):
+        elif stripped.startswith("vegasncallsBORN"):
             new_lines.append(
-                f"vegasncalls = {vegas_params['vegasncalls']}\n"
+                f"vegasncallsBORN = {vegas_params['vegasncallsBORN']}\n"
+            )
+
+        elif stripped.startswith("vegasncallsCT"):
+            new_lines.append(
+                f"vegasncallsCT = {vegas_params['vegasncallsCT']}\n"
+            )
+
+        elif stripped.startswith("vegasncallsVJLO"):
+            new_lines.append(
+                f"vegasncallsVJLO = {vegas_params['vegasncallsVJLO']}\n"
+            )
+
+        elif stripped.startswith("vegasncallsVJREAL"):
+            new_lines.append(
+                f"vegasncallsVJREAL = {vegas_params['vegasncallsVJREAL']}\n"
+            )
+
+        elif stripped.startswith("vegasncallsVJVIRT"):
+            new_lines.append(
+                f"vegasncallsVJVIRT = {vegas_params['vegasncallsVJVIRT']}\n"
             )
 
         elif stripped.startswith("cubanbatch"):
@@ -220,14 +240,20 @@ def get_vegas_params(
         "VJquad":   "false",
 
         # ---------------------------------------------
-        # vegas controls
+        # vegas calls
         # ---------------------------------------------
 
-        "vegasncalls": 20_000_000,
+        "vegasncallsBORN": 1000000,
+        "vegasncallsCT":   2000000,
+        "vegasncallsVJLO": 20000000,
+        "vegasncallsVJREAL": 50000000,
+        "vegasncallsVJVIRT": 5000000,
 
-        # IMPORTANT:
-        # large batch stabilizes importance map
-        "cubanbatch": 10_000,
+        # ---------------------------------------------
+        # cuba controls
+        # ---------------------------------------------
+
+        "cubanbatch": 10000,
     }
 
     # =====================================================
@@ -248,22 +274,32 @@ def get_vegas_params(
 
             "VJquad":   "false",
 
-            "vegasncalls": 20_000_000,
+            "vegasncallsBORN": 1000000,
+            "vegasncallsCT":   2000000,
 
-            "cubanbatch": 10_000,
+            "vegasncallsVJLO":   20000000,
+            "vegasncallsVJREAL": 50000000,
+            "vegasncallsVJVIRT": 5000000,
+
+            "cubanbatch": 10000,
         })
 
         # ---------------------------------------------
-        # N3LL needs more stability
+        # N3LL stabilization
         # ---------------------------------------------
 
         if order_name == "N3LL":
 
             params.update({
 
-                "vegasncalls": 100_000_000,
+                "vegasncallsBORN": 5000000,
+                "vegasncallsCT":   10000000,
 
-                "cubanbatch": 50_000,
+                "vegasncallsVJLO":   100000000,
+                "vegasncallsVJREAL": 100000000,
+                "vegasncallsVJVIRT": 20000000,
+
+                "cubanbatch": 50000,
             })
 
     # =====================================================
@@ -284,20 +320,28 @@ def get_vegas_params(
 
             "VJquad":   "false",
 
-            # more statistics
-            "vegasncalls": 150_000_000,
+            "vegasncallsBORN": 10000000,
+            "vegasncallsCT":   20000000,
 
-            # MUCH more stable grid adaptation
-            "cubanbatch": 100_000,
+            "vegasncallsVJLO":   150000000,
+            "vegasncallsVJREAL": 150000000,
+            "vegasncallsVJVIRT": 50000000,
+
+            "cubanbatch": 100000,
         })
 
         if order_name == "N3LL":
 
             params.update({
 
-                "vegasncalls": 300_000_000,
+                "vegasncallsBORN": 20000000,
+                "vegasncallsCT":   50000000,
 
-                "cubanbatch": 100_000,
+                "vegasncallsVJLO":   300000000,
+                "vegasncallsVJREAL": 300000000,
+                "vegasncallsVJVIRT": 100000000,
+
+                "cubanbatch": 100000,
             })
 
     # =====================================================
@@ -330,24 +374,60 @@ def get_vegas_params(
             "VJquad":   "false",
 
             # -----------------------------------------
-            # robust vegas setup
+            # MUCH lighter statistics
             # -----------------------------------------
 
-            # allow long convergence
-            # but avoid quadrature death
-            "vegasncalls": 300_000_000,
+            "vegasncallsBORN": 10000000,
+            "vegasncallsCT":   10000000,
 
-            # HUGE batches stabilize the grid
-            "cubanbatch": 100_000,
+            "vegasncallsVJLO":   30000000,
+            "vegasncallsVJREAL": 50000000,
+            "vegasncallsVJVIRT": 20000000,
+
+            # -----------------------------------------
+            # smaller batches
+            # -----------------------------------------
+
+            "cubanbatch": 20000,
         })
 
         if order_name == "N3LL":
 
             params.update({
 
-                "vegasncalls": 500_000_000,
+                # -----------------------------------------
+                # resummed pieces
+                #
+                # these are usually stable
+                # -----------------------------------------
 
-                "cubanbatch": 200_000,
+                "vegasncallsBORN": 20000000,
+                "vegasncallsCT":   20000000,
+
+                # -----------------------------------------
+                # V+J pieces
+                #
+                # pathological region:
+                # vegas good
+                # gigantic first iterations bad
+                # -----------------------------------------
+
+                "vegasncallsVJLO":   20000000,
+
+                # real radiation: most expensive
+                "vegasncallsVJREAL": 50000000,
+
+                # virtual: cheaper / lower dimension
+                "vegasncallsVJVIRT": 20000000,
+
+                # -----------------------------------------
+                # IMPORTANT
+                #
+                # large enough for stability
+                # but not absurd
+                # -----------------------------------------
+
+                "cubanbatch": 10000,
             })
 
     return params
@@ -432,10 +512,6 @@ subprocess.run(["cp", executable, jobs_dir], cwd=os.getcwd(), check=True)
 # loop
 # -------------------------
 
-# -------------------------
-# loop
-# -------------------------
-
 qt_edges  = list(range(0, 102, 2))
 ptl_edges = list(range(25, 61, 1))
 
@@ -451,7 +527,11 @@ for cfg in configs:
     # qT loop
     # =================================================
 
-    for iqt in range(0, len(qt_edges)-1, qt_group_size):
+    for iqt in range(
+        0,
+        len(qt_edges)-1,
+        qt_group_size
+    ):
 
         sub_qt_edges = qt_edges[
             iqt:iqt+qt_group_size+1
@@ -467,40 +547,125 @@ for cfg in configs:
         qt_tag = f"qt{qt_low}_{qt_high}"
 
         # =============================================
-        # adaptive pT splitting
+        # empirical critical diagonal
+        #
+        # pT_critical ~ 45 + 0.6*qT
+        #
+        # above this:
+        # - cancellations explode
+        # - quadrature dies
+        # - vegas variance explodes
         # =============================================
 
-        if qt_high <= 10:
-            ptl_group_size = 1
+        pt_critical = 45 + 0.6 * qt_high
 
-        elif qt_high <= 20:
-            ptl_group_size = 2
+        # =============================================
+        # high-qT region
+        #
+        # above ~35 GeV:
+        # no pathological phase-space remains
+        #
+        # merge all pT bins
+        # =============================================
 
-        elif qt_high <= 50:
-            ptl_group_size = 5
+        if qt_high >= 35:
+
+            ptl_groups = [ptl_edges]
+
+        # =============================================
+        # adaptive low-qT grouping
+        # =============================================
 
         else:
-            ptl_group_size = len(ptl_edges)
+
+            ptl_groups = []
+
+            ipt = 0
+
+            while ipt < len(ptl_edges)-1:
+
+                ptl_low_tmp = ptl_edges[ipt]
+
+                # -------------------------------------
+                # distance from pathological diagonal
+                # -------------------------------------
+
+                delta = (
+                    ptl_low_tmp - pt_critical
+                )
+
+                # -------------------------------------
+                # adaptive refinement
+                # -------------------------------------
+
+                if delta >= 0:
+
+                    # pathological
+                    ptl_group_size = 1
+
+                elif delta >= -5:
+
+                    # very delicate
+                    ptl_group_size = 2
+
+                elif delta >= -10:
+
+                    # difficult
+                    ptl_group_size = 3
+
+                elif delta >= -15:
+
+                    # moderate
+                    ptl_group_size = 5
+
+                elif delta >= -20:
+
+                    # safe
+                    ptl_group_size = 8
+
+                else:
+
+                    # very safe
+                    ptl_group_size = 12
+
+                # -------------------------------------
+                # avoid overflow
+                # -------------------------------------
+
+                remaining = (
+                    len(ptl_edges)-1 - ipt
+                )
+
+                ptl_group_size = min(
+                    ptl_group_size,
+                    remaining
+                )
+
+                # -------------------------------------
+                # build pT group
+                # -------------------------------------
+
+                sub_ptl_edges = ptl_edges[
+                    ipt:ipt+ptl_group_size+1
+                ]
+
+                ptl_groups.append(
+                    sub_ptl_edges
+                )
+
+                ipt += ptl_group_size
 
         print("")
         print(
             f"[INFO] qT = [{qt_low}, {qt_high}] "
-            f"--> ptl_group_size = {ptl_group_size}"
+            f"--> generated {len(ptl_groups)} pT groups"
         )
 
         # =============================================
         # pT loop
         # =============================================
 
-        for ipt in range(
-            0,
-            len(ptl_edges)-1,
-            ptl_group_size
-        ):
-
-            sub_ptl_edges = ptl_edges[
-                ipt:ipt+ptl_group_size+1
-            ]
+        for sub_ptl_edges in ptl_groups:
 
             ptl_bins_string = " ".join(
                 map(str, sub_ptl_edges)
@@ -527,9 +692,9 @@ for cfg in configs:
 
                     variations = scale_variations
 
-                # =================================
+                # =====================================
                 # adaptive vegas setup
-                # =================================
+                # =====================================
 
                 vegas_params = get_vegas_params(
                     qt_low,
@@ -575,6 +740,21 @@ for cfg in configs:
                     queue_entries.append(
                         f"{jobs_dir}/{tag}"
                     )
+
+# -------------------------
+# condor requirements
+# -------------------------
+
+extra_requirements = ""
+
+if not on_eos:
+
+    extra_requirements = """
+request_cpus = 1
+request_memory = 2048
+Requirements = (machine == "hercules02.hcms.it")
+"""
+
 # =====================================================
 # create submit files split by perturbative order
 # =====================================================
@@ -588,9 +768,9 @@ executable = run_dyturbo.sh
 
 arguments = $(cfg).in
 
-output = $(cfg).out
-error  = $(cfg).err
-log    = $(cfg).log
+output = /dev/null
+error  = /dev/null
+log    = /dev/null
 
 getenv = True
 
@@ -600,7 +780,7 @@ transfer_input_files = run_dyturbo.sh,$(cfg).in,../../{tarball_dest.split('/')[-
 
 +JobFlavour = "tomorrow"
 
-max_materialize = 500
+max_materialize = 1000
 
 JobBatchName = "DYTurbo_{process}_{order_name}"
 
@@ -645,25 +825,25 @@ queue cfg in (
         f"{subfile}"
     )
 
-# =====================================================
-# submit all
-# =====================================================
+# # =====================================================
+# # submit all
+# # =====================================================
 
-for order_name, subfile in submit_files.items():
+# for order_name, subfile in submit_files.items():
 
-    print("")
-    print(
-        f"[INFO] Submitting {order_name}"
-    )
+#     print("")
+#     print(
+#         f"[INFO] Submitting {order_name}"
+#     )
 
-    subprocess.run(
-        [
-            "condor_submit",
-            os.path.basename(subfile)
-        ],
-        cwd=os.path.dirname(subfile),
-        check=True
-    )
+#     subprocess.run(
+#         [
+#             "condor_submit",
+#             os.path.basename(subfile)
+#         ],
+#         cwd=os.path.dirname(subfile),
+#         check=True
+#     )
 
-print("")
-print("[INFO] Submitted all jobs")
+# print("")
+# print("[INFO] Submitted all jobs")

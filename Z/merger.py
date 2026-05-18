@@ -9,13 +9,27 @@ from collections import defaultdict
 import ROOT
 
 
+# =====================================================
+# helpers
+# =====================================================
+
 def normalize_var(v):
 
-    return (
+    v = (
         v.lower()
         .replace("(l)", "")
         .replace(" ", "")
     )
+
+    aliases = {
+
+        "pt": "ptl",
+        "ptlep": "ptl",
+        "qt": "qt",
+        "yll": "y",
+    }
+
+    return aliases.get(v, v)
 
 
 def clean_var_name(name):
@@ -53,50 +67,81 @@ def parse_filename(filename):
 
     process = tokens[0]
 
-    # -------------------------------------------------
-    # find perturbative order
-    # -------------------------------------------------
+    orders = ["LO", "NLO", "NNLO", "NLL", "NNLL", "N3LL"]
 
     order_idx = None
 
     for i, t in enumerate(tokens):
-
-        if t in ["LO", "NLO", "NNLO", "NLL", "NNLL", "N3LL"]:
-
+        if t in orders:
             order_idx = i
             break
 
     if order_idx is None:
-
         raise RuntimeError(
-            f"Could not determine perturbative order in {filename}"
+            f"Could not determine order in {filename}"
         )
 
-    # -------------------------------------------------
-    # parse variables encoded in filename
-    # -------------------------------------------------
-
+    bins = {}
     variables = []
 
     i = 1
 
     while i < order_idx:
 
-        var = normalize_var(tokens[i])
+        # Case A:
+        #   qt qt0 2
+        #   ptl ptl25 37
+        if i + 2 < order_idx:
 
-        variables.append(var)
+            var_candidate = normalize_var(tokens[i])
+            low_token = tokens[i + 1]
+            high_token = tokens[i + 2]
 
-        i += 3
+            m = re.match(
+                r"([a-zA-Z]+)([-+]?[0-9]*\.?[0-9]+)$",
+                low_token
+            )
 
-    # -------------------------------------------------
-    # order
-    # -------------------------------------------------
+            if m:
+                low_var = normalize_var(m.group(1))
 
-    order = tokens[order_idx]
+                if low_var == var_candidate:
+                    bins[var_candidate] = (
+                        float(m.group(2)),
+                        float(high_token)
+                    )
+                    variables.append(var_candidate)
+                    i += 3
+                    continue
 
-    # -------------------------------------------------
-    # scales
-    # -------------------------------------------------
+        # Case B:
+        #   qt0 2
+        #   ptl54 55
+        if i + 1 < order_idx:
+
+            low_token = tokens[i]
+            high_token = tokens[i + 1]
+
+            m = re.match(
+                r"([a-zA-Z]+)([-+]?[0-9]*\.?[0-9]+)$",
+                low_token
+            )
+
+            if m:
+                var = normalize_var(m.group(1))
+
+                bins[var] = (
+                    float(m.group(2)),
+                    float(high_token)
+                )
+                variables.append(var)
+                i += 2
+                continue
+
+        raise RuntimeError(
+            f"Could not parse bin tokens around "
+            f"{tokens[i:order_idx]} in {filename}"
+        )
 
     scales = {}
 
@@ -108,23 +153,20 @@ def parse_filename(filename):
         )
 
         if m:
-
             scales[m.group(1)] = float(m.group(2))
 
     return {
         "process": process,
         "variables": variables,
-        "order": order,
+        "bins": bins,
+        "order": tokens[order_idx],
         "scales": scales,
         "filename": filename
     }
 
 
 # =====================================================
-# parse txt content
-# =====================================================
-# =====================================================
-# parse txt content
+# parse txt file
 # =====================================================
 
 def read_result(filename):
@@ -142,6 +184,14 @@ def read_result(filename):
         raise RuntimeError(
             f"Empty file: {filename}"
         )
+
+    # =================================================
+    # filename = global truth
+    # =================================================
+
+    info = parse_filename(filename)
+
+    filename_bins = dict(info["bins"])
 
     # -------------------------------------------------
     # header
@@ -161,11 +211,29 @@ def read_result(filename):
         .split()
     )
 
-    # -------------------------------------------------
-    # infer variables from txt header
-    # -------------------------------------------------
+    # =================================================
+    # variables stored INSIDE txt
+    #
+    # examples:
+    #
+    # #qTlo qThi pT(l)lo pT(l)hi PDF0 uncertainty
+    #
+    # -> txt variables = [qt, ptl]
+    #
+    # OR
+    #
+    # #pT(l)lo pT(l)hi PDF0 uncertainty
+    #
+    # -> txt variables = [ptl]
+    #
+    # OR
+    #
+    # #PDF0 uncertainty
+    #
+    # -> txt variables = []
+    # =================================================
 
-    variables = []
+    txt_variables = []
 
     i = 0
 
@@ -181,15 +249,9 @@ def read_result(filename):
 
         if tok_clean.endswith("lo"):
 
-            var = tok_clean[:-2]
+            var = clean_var_name(tok_clean)
 
-            var = (
-                var
-                .replace("(l)", "")
-                .replace(" ", "")
-            )
-
-            variables.append(var)
+            txt_variables.append(var)
 
             i += 2
 
@@ -197,26 +259,16 @@ def read_result(filename):
 
             i += 1
 
-    # -------------------------------------------------
-    # fallback:
-    # single-bin files do not store variables
-    # in the txt header
-    # -------------------------------------------------
-
-    if len(variables) == 0:
-
-        info = parse_filename(filename)
-
-        variables = list(info["variables"])
-
     print("")
-    print("[DEBUG] file =", filename)
-    print("[DEBUG] header tokens =", header_tokens)
-    print("[DEBUG] parsed variables =", variables)
+    print("=" * 80)
+    print(f"[DEBUG] file = {filename}")
+    print(f"[DEBUG] header tokens = {header_tokens}")
+    print(f"[DEBUG] txt variables = {txt_variables}")
+    print(f"[DEBUG] filename bins = {filename_bins}")
 
-    # -------------------------------------------------
+    # =================================================
     # rows
-    # -------------------------------------------------
+    # =================================================
 
     entries = []
 
@@ -227,111 +279,41 @@ def read_result(filename):
 
         cursor = 0
 
-        bins = {}
+        # ---------------------------------------------
+        # start from filename bins
+        # ---------------------------------------------
 
-        # =============================================
-        # multi-bin case
-        # =============================================
+        bins = dict(filename_bins)
 
-        if len(toks) > 2 * len(variables) + 1:
+        # ---------------------------------------------
+        # override variables present in txt
+        # ---------------------------------------------
 
-            for var in variables:
+        for var in txt_variables:
 
-                low = float(toks[cursor])
-                high = float(toks[cursor + 1])
+            low = float(toks[cursor])
+            high = float(toks[cursor + 1])
 
-                bins[var] = (low, high)
+            bins[var] = (low, high)
 
-                cursor += 2
+            cursor += 2
 
-        # =============================================
-        # single-bin case:
-        # recover binning from filename
-        # =============================================
-
-        else:
-
-            tokens = (
-                os.path.basename(filename)
-                .replace(".txt", "")
-                .split("_")
-            )
-
-            print("[DEBUG] filename tokens =", tokens)
-
-            order_idx = None
-
-            for ii, tt in enumerate(tokens):
-
-                if tt in [
-                    "LO",
-                    "NLO",
-                    "NNLO",
-                    "NLL",
-                    "NNLL",
-                    "N3LL"
-                ]:
-
-                    order_idx = ii
-                    break
-
-            # -----------------------------------------
-            # parse:
-            #
-            # qt_qt0_2
-            # ptl_ptl25_26
-            # qt_qt0_2_ptl25_26
-            # etc
-            # -----------------------------------------
-
-            j = 1
-
-            while j < order_idx:
-
-                var = normalize_var(tokens[j])
-
-                bin_token = tokens[j + 1]
-
-                # -------------------------------------
-                # parse:
-                # qt0
-                # ptl25
-                # etc
-                # -------------------------------------
-
-                m = re.match(
-                    r"([a-zA-Z]+)([-+]?[0-9]*\.?[0-9]+)",
-                    bin_token
-                )
-
-                if not m:
-
-                    raise RuntimeError(
-                        f"Could not parse bin token "
-                        f"{bin_token} in {filename}"
-                    )
-
-                low = float(m.group(2))
-                high = float(tokens[j + 2])
-
-                bins[var] = (low, high)
-
-                j += 3
-
-        # =============================================
+        # ---------------------------------------------
         # value/error
-        # =============================================
+        # ---------------------------------------------
 
         value = float(toks[cursor])
         error = float(toks[cursor + 1])
 
         entries.append({
+
             "bins": bins,
             "value": value,
             "error": error
         })
 
     return entries
+
 
 # =====================================================
 # grouping
@@ -370,6 +352,7 @@ def load_directory(directory):
         for e in file_entries:
 
             entry = {
+
                 "bins": e["bins"],
                 "value": e["value"],
                 "error": e["error"],
@@ -410,7 +393,6 @@ def build_scale_name(scales):
 
     return "_".join(out)
 
-
 # =====================================================
 # build ROOT histograms
 # =====================================================
@@ -430,14 +412,14 @@ def build_histograms(groups, output_root):
 
         print("")
         print("=" * 80)
-        print(f"[INFO] Building group:")
+        print(f"[INFO] Building group")
         print(f"  process   = {process}")
         print(f"  order     = {order}")
         print(f"  variables = {variables}")
         print(f"  ndim      = {ndim}")
 
         # =================================================
-        # split by scale variations
+        # split by scale variation
         # =================================================
 
         scale_groups = defaultdict(list)
@@ -485,9 +467,9 @@ def build_histograms(groups, output_root):
             print("")
             print(f"[INFO] Creating histogram: {scale_name}")
 
-            # =============================================
+            # =================================================
             # 1D
-            # =============================================
+            # =================================================
 
             if ndim == 1:
 
@@ -497,7 +479,6 @@ def build_histograms(groups, output_root):
 
                 for e in scale_entries:
 
-                    print(f"  bins = {e['bins']}")
                     xl, xh = e["bins"][xvar]
 
                     xedges.add(xl)
@@ -505,8 +486,8 @@ def build_histograms(groups, output_root):
 
                 xedges = sorted(xedges)
 
-                print(f"  xvar  = {xvar}")
-                print(f"  edges = {xedges}")
+                print(f"  xvar   = {xvar}")
+                print(f"  xedges = {xedges}")
 
                 hist = ROOT.TH1D(
                     scale_name,
@@ -514,6 +495,8 @@ def build_histograms(groups, output_root):
                     len(xedges)-1,
                     array.array("d", xedges)
                 )
+
+                hist.Sumw2()
 
                 for e in scale_entries:
 
@@ -535,9 +518,9 @@ def build_histograms(groups, output_root):
 
                 hist.Write()
 
-            # =============================================
+            # =================================================
             # 2D
-            # =============================================
+            # =================================================
 
             elif ndim == 2:
 
@@ -575,6 +558,8 @@ def build_histograms(groups, output_root):
                     array.array("d", yedges)
                 )
 
+                hist.Sumw2()
+
                 for e in scale_entries:
 
                     xl, xh = e["bins"][xvar]
@@ -598,11 +583,51 @@ def build_histograms(groups, output_root):
                         e["error"]
                     )
 
+                # ---------------------------------------------
+                # write full 2D histogram
+                # ---------------------------------------------
+
                 hist.Write()
 
-            # =============================================
+                # =================================================
+                # projections
+                # =================================================
+
+                # ---------------------------------------------
+                # integrate over Y
+                #
+                # -> X distribution
+                # ---------------------------------------------
+
+                proj_x = hist.ProjectionX(
+                    f"{scale_name}_proj_{xvar}"
+                )
+
+                proj_x.SetTitle(
+                    f"{scale_name}_proj_{xvar}"
+                )
+
+                proj_x.Write()
+
+                # ---------------------------------------------
+                # integrate over X
+                #
+                # -> Y distribution
+                # ---------------------------------------------
+
+                proj_y = hist.ProjectionY(
+                    f"{scale_name}_proj_{yvar}"
+                )
+
+                proj_y.SetTitle(
+                    f"{scale_name}_proj_{yvar}"
+                )
+
+                proj_y.Write()
+
+            # =================================================
             # 3D
-            # =============================================
+            # =================================================
 
             elif ndim == 3:
 
@@ -648,6 +673,8 @@ def build_histograms(groups, output_root):
                     array.array("d", zedges)
                 )
 
+                hist.Sumw2()
+
                 for e in scale_entries:
 
                     xl, xh = e["bins"][xvar]
@@ -674,12 +701,50 @@ def build_histograms(groups, output_root):
                         e["error"]
                     )
 
+                # ---------------------------------------------
+                # write full 3D histogram
+                # ---------------------------------------------
+
                 hist.Write()
+
+                # =================================================
+                # 2D projections
+                # =================================================
+
+                proj_xy = hist.Project3D(
+                    f"xy"
+                )
+
+                proj_xy.SetName(
+                    f"{scale_name}_proj_{xvar}_{yvar}"
+                )
+
+                proj_xy.Write()
+
+                proj_xz = hist.Project3D(
+                    f"xz"
+                )
+
+                proj_xz.SetName(
+                    f"{scale_name}_proj_{xvar}_{zvar}"
+                )
+
+                proj_xz.Write()
+
+                proj_yz = hist.Project3D(
+                    f"yz"
+                )
+
+                proj_yz.SetName(
+                    f"{scale_name}_proj_{yvar}_{zvar}"
+                )
+
+                proj_yz.Write()
 
             else:
 
                 print(
-                    f"[WARNING] ndim={ndim} > 3 not implemented"
+                    f"[WARNING] ndim={ndim} not implemented"
                 )
 
     fout.Close()
