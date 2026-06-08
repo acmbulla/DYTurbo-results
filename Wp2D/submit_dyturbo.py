@@ -347,16 +347,107 @@ def get_vegas_params(
     # =====================================================
     # PATHOLOGICAL REGION
     #
-    # qT very small + pT too high
+    # delta > 0
     #
-    # observations from logs:
+    # strongly suppressed phase space:
     #
-    # - quadrature explodes to O(100h)
-    # - vegas converges in minutes-hours
+    #   qT small
+    #   pTl too large
     #
-    # therefore:
+    # observations:
     #
-    # -> switch EVERYTHING to vegas
+    # - support tiny
+    # - cancellations huge
+    # - VJREAL dominates runtime
+    # - precision requirements LOW
+    #
+    # strategy:
+    #
+    # -> full vegas
+    # -> aggressively reduce statistics
+    # -> prioritize turnaround over precision
+    # =====================================================
+
+    # elif delta < 3:
+
+    #     params.update({
+
+    #         # -----------------------------------------
+    #         # FULL VEGAS MODE
+    #         # -----------------------------------------
+
+    #         "BORNquad": "false",
+    #         "CTquad":   "false",
+    #         "FPCquad":  "false",
+
+    #         "VJquad":   "false",
+
+    #         # -----------------------------------------
+    #         # moderate statistics
+    #         # -----------------------------------------
+
+    #         "vegasncallsBORN":   2000000,
+    #         "vegasncallsCT":     2000000,
+
+    #         "vegasncallsVJLO":   5000000,
+    #         "vegasncallsVJREAL": 10000000,
+    #         "vegasncallsVJVIRT": 5000000,
+
+    #         # -----------------------------------------
+    #         # smaller batches
+    #         # -----------------------------------------
+
+    #         "cubanbatch": 5000,
+    #     })
+
+    #     # =================================================
+    #     # N3LL
+    #     # =================================================
+
+    #     if order_name == "N3LL":
+
+    #         params.update({
+
+    #             # -----------------------------------------
+    #             # resummed pieces
+    #             # -----------------------------------------
+
+    #             "vegasncallsBORN":   5000000,
+    #             "vegasncallsCT":     5000000,
+
+    #             # -----------------------------------------
+    #             # V+J
+    #             # -----------------------------------------
+
+    #             "vegasncallsVJLO":   10000000,
+
+    #             # REAL dominates runtime
+    #             "vegasncallsVJREAL": 20000000,
+
+    #             # virtual cheaper
+    #             "vegasncallsVJVIRT": 10000000,
+
+    #             # -----------------------------------------
+    #             # batches
+    #             # -----------------------------------------
+
+    #             "cubanbatch": 5000,
+    #         })
+
+    # =====================================================
+    # ULTRA SUPPRESSED REGION
+    #
+    # delta >> 0
+    #
+    # essentially kinematic tail
+    #
+    # precision completely unnecessary
+    #
+    # goal:
+    #
+    # -> finite result
+    # -> reasonable shape
+    # -> avoid week-long jobs
     # =====================================================
 
     else:
@@ -374,22 +465,26 @@ def get_vegas_params(
             "VJquad":   "false",
 
             # -----------------------------------------
-            # MUCH lighter statistics
+            # ultra-light setup
             # -----------------------------------------
 
-            "vegasncallsBORN": 10000000,
-            "vegasncallsCT":   10000000,
+            "vegasncallsBORN":   1000000,
+            "vegasncallsCT":     1000000,
 
-            "vegasncallsVJLO":   30000000,
-            "vegasncallsVJREAL": 50000000,
-            "vegasncallsVJVIRT": 20000000,
+            "vegasncallsVJLO":   2000000,
+            "vegasncallsVJREAL": 5000000,
+            "vegasncallsVJVIRT": 2000000,
 
             # -----------------------------------------
-            # smaller batches
+            # tiny batches
             # -----------------------------------------
 
-            "cubanbatch": 20000,
+            "cubanbatch": 2000,
         })
+
+        # =================================================
+        # N3LL
+        # =================================================
 
         if order_name == "N3LL":
 
@@ -397,37 +492,27 @@ def get_vegas_params(
 
                 # -----------------------------------------
                 # resummed pieces
-                #
-                # these are usually stable
                 # -----------------------------------------
 
-                "vegasncallsBORN": 20000000,
-                "vegasncallsCT":   20000000,
+                "vegasncallsBORN":   2000000,
+                "vegasncallsCT":     2000000,
 
                 # -----------------------------------------
-                # V+J pieces
-                #
-                # pathological region:
-                # vegas good
-                # gigantic first iterations bad
+                # V+J
                 # -----------------------------------------
 
-                "vegasncallsVJLO":   20000000,
+                "vegasncallsVJLO":   5000000,
 
-                # real radiation: most expensive
-                "vegasncallsVJREAL": 50000000,
+                # REAL still dominant
+                "vegasncallsVJREAL": 10000000,
 
-                # virtual: cheaper / lower dimension
-                "vegasncallsVJVIRT": 20000000,
+                "vegasncallsVJVIRT": 5000000,
 
                 # -----------------------------------------
-                # IMPORTANT
-                #
-                # large enough for stability
-                # but not absurd
+                # batches
                 # -----------------------------------------
 
-                "cubanbatch": 10000,
+                "cubanbatch": 2000,
             })
 
     return params

@@ -662,6 +662,10 @@ def build_histograms(groups, output_root):
                 print(f"  yvar   = {yvar}")
                 print(f"  zvar   = {zvar}")
 
+                print(f"  xedges = {xedges}")
+                print(f"  yedges = {yedges}")
+                print(f"  zedges = {zedges}")
+
                 hist = ROOT.TH3D(
                     scale_name,
                     scale_name,
@@ -674,6 +678,10 @@ def build_histograms(groups, output_root):
                 )
 
                 hist.Sumw2()
+
+                # =============================================
+                # fill histogram
+                # =============================================
 
                 for e in scale_entries:
 
@@ -701,9 +709,9 @@ def build_histograms(groups, output_root):
                         e["error"]
                     )
 
-                # ---------------------------------------------
+                # =============================================
                 # write full 3D histogram
-                # ---------------------------------------------
+                # =============================================
 
                 hist.Write()
 
@@ -711,9 +719,11 @@ def build_histograms(groups, output_root):
                 # 2D projections
                 # =================================================
 
-                proj_xy = hist.Project3D(
-                    f"xy"
-                )
+                # ---------------------------------------------
+                # XY
+                # ---------------------------------------------
+
+                proj_xy = hist.Project3D("xy")
 
                 proj_xy.SetName(
                     f"{scale_name}_proj_{xvar}_{yvar}"
@@ -721,9 +731,11 @@ def build_histograms(groups, output_root):
 
                 proj_xy.Write()
 
-                proj_xz = hist.Project3D(
-                    f"xz"
-                )
+                # ---------------------------------------------
+                # XZ
+                # ---------------------------------------------
+
+                proj_xz = hist.Project3D("xz")
 
                 proj_xz.SetName(
                     f"{scale_name}_proj_{xvar}_{zvar}"
@@ -731,15 +743,57 @@ def build_histograms(groups, output_root):
 
                 proj_xz.Write()
 
-                proj_yz = hist.Project3D(
-                    f"yz"
-                )
+                # ---------------------------------------------
+                # YZ
+                # ---------------------------------------------
+
+                proj_yz = hist.Project3D("yz")
 
                 proj_yz.SetName(
                     f"{scale_name}_proj_{yvar}_{zvar}"
                 )
 
                 proj_yz.Write()
+
+                # =================================================
+                # fully integrated 1D projections
+                # =================================================
+
+                # ---------------------------------------------
+                # X
+                # ---------------------------------------------
+
+                proj_x = hist.Project3D("x")
+
+                proj_x.SetName(
+                    f"{scale_name}_proj_{xvar}"
+                )
+
+                proj_x.Write()
+
+                # ---------------------------------------------
+                # Y
+                # ---------------------------------------------
+
+                proj_y = hist.Project3D("y")
+
+                proj_y.SetName(
+                    f"{scale_name}_proj_{yvar}"
+                )
+
+                proj_y.Write()
+
+                # ---------------------------------------------
+                # Z
+                # ---------------------------------------------
+
+                proj_z = hist.Project3D("z")
+
+                proj_z.SetName(
+                    f"{scale_name}_proj_{zvar}"
+                )
+
+                proj_z.Write()
 
             else:
 
