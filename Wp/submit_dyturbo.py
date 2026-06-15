@@ -601,7 +601,8 @@ subprocess.run(["cp", executable, jobs_dir], cwd=os.getcwd(), check=True)
 # loop
 # -------------------------
 
-qt_edges  = list(range(0, 102, 2))
+# qt_edges  = list(range(0, 102, 2))
+qt_edges  = list(range(98, 102, 2))
 # qt_edges = [40, 50, 60, 70, 80, 90, 100]
 # ptl_edges = list(range(25, 61, 1))
 ptl_edges = [25, 60]

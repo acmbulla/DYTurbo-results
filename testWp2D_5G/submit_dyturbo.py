@@ -602,8 +602,7 @@ subprocess.run(["cp", executable, jobs_dir], cwd=os.getcwd(), check=True)
 # -------------------------
 
 qt_edges  = list(range(0, 102, 2))
-ptl_edges = list(range(26, 62, 2))
-ptl_edges = [25] + ptl_edges
+ptl_edges = list(range(25, 61, 5))
 
 queue_entries = []
 
