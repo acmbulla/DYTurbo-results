@@ -11,6 +11,13 @@ import datetime
 
 executable = "run_dyturbo.sh"
 
+# prende il tag dopo DYTurbo-results/
+cwd = os.getcwd()
+process = "unknown"
+
+if "DYTurbo-results/" in cwd:
+    process = cwd.split("DYTurbo-results/")[1].split("/")[0]
+
 configs = [
     "Template/qt.in",
     # "Template/ptl.in",
@@ -173,7 +180,22 @@ def modify_config(
             new_lines.append(
                 f"cubanbatch = {vegas_params['cubanbatch']}\n"
             )
-
+        elif stripped.startswith("maxevalVJREAL"):
+            new_lines.append(
+                f"maxevalVJREAL = {vegas_params['maxevalVJREAL']}\n"
+            )
+        elif stripped.startswith("maxevalVJVIRT"):
+            new_lines.append(
+                f"maxevalVJVIRT = {vegas_params['maxevalVJVIRT']}\n"
+            )
+        elif stripped.startswith("statefile"):
+            new_lines.append(
+                f"statefile = {vegas_params['statefile']}\n"
+            )
+        elif stripped.startswith("vegasFlagsExtra"):
+            new_lines.append(
+                f"vegasFlagsExtra = {vegas_params['vegasFlagsExtra']}\n"
+            )
         else:
             new_lines.append(line)
 
@@ -207,25 +229,37 @@ def modify_config(
 def get_vegas_params(
     qt_low,
     qt_high,
-    ptl_low,
-    ptl_high,
-    order_name
+    order_name,
+    process
 ):
 
     # -----------------------------------------------------
-    # empirical suppression frontier
+    # empirical suppression frontier, simplified for a single,
+    # FIXED pT(l) bin [26,60] (as used for Z: no genuine pT(l)
+    # differential, so ptl_high is always 60 -- the general
+    # 2D "delta = ptl_high - (45+0.6*qt_high)" diagonal doesn't
+    # apply meaningfully here, only qt_high matters).
     #
-    # above this:
-    # - support tiny
-    # - cancellations huge
-    # - quadrature explodes
+    # Substituting ptl_high=60 into the original formula:
+    #   delta = 60 - (45 + 0.6*qt_high) = 15 - 0.6*qt_high
+    # gives these qt_high-only thresholds (verified to reproduce
+    # the exact same region boundaries as the general formula
+    # at ptl_high=60):
     #
-    # empirical diagonal:
-    #
-    # pTcrit ~ 45 + 0.6*qT
+    #   delta < -5  (SAFE)          <=> qt_high > 33.33
+    #   delta < 0   (CRITICAL)      <=> qt_high > 25
+    #   delta < 3   (PATHOLOGICAL)  <=> qt_high > 20
+    #   else        (ULTRA)         <=> qt_high <= 20
     # -----------------------------------------------------
 
-    delta = ptl_high - (45 + 0.6 * qt_high)
+    if qt_high > 33.333333:
+        delta = -10   # anything < -5, just needs to select SAFE below
+    elif qt_high > 25:
+        delta = -1    # anything in [-5, 0), selects CRITICAL
+    elif qt_high > 20:
+        delta = 1     # anything in [0, 3), selects PATHOLOGICAL
+    else:
+        delta = 10    # anything >= 3, selects ULTRA
 
     # =====================================================
     # defaults
@@ -292,7 +326,7 @@ def get_vegas_params(
         # N3LL stabilization
         # ---------------------------------------------
 
-        if order_name == "N3LL":
+        if order_name != "NLL":
 
             params.update({
 
@@ -334,7 +368,7 @@ def get_vegas_params(
             "cubanbatch": 100000,
         })
 
-        if order_name == "N3LL":
+        if order_name != "NLL":
 
             params.update({
 
@@ -350,105 +384,112 @@ def get_vegas_params(
 
     # =====================================================
     # PATHOLOGICAL REGION
-    #
+
     # delta > 0
-    #
+
     # strongly suppressed phase space:
-    #
+
     #   qT small
     #   pTl too large
-    #
+
     # observations:
-    #
+
     # - support tiny
     # - cancellations huge
     # - VJREAL dominates runtime
     # - precision requirements LOW
-    #
+
     # strategy:
-    #
+
     # -> full vegas
     # -> aggressively reduce statistics
     # -> prioritize turnaround over precision
     # =====================================================
 
-    # elif delta < 3:
+    elif delta < 3:
 
-    #     params.update({
+        if process == "Z":
+            # la Z ha un bin solo in pt, quindi vogliamo la quadratura
+            quad_flags = {
+                "BORNquad": "true",
+                "CTquad":   "true",
+                "FPCquad":  "true",
+                "VJquad":   "false",
+            }
+        else:
+            quad_flags = {
+                "BORNquad": "false",
+                "CTquad":   "false",
+                "FPCquad":  "false",
+                "VJquad":   "false",
+            }
 
-    #         # -----------------------------------------
-    #         # FULL VEGAS MODE
-    #         # -----------------------------------------
+        params.update({
+            **quad_flags,
 
-    #         "BORNquad": "false",
-    #         "CTquad":   "false",
-    #         "FPCquad":  "false",
+            # -----------------------------------------
+            # moderate statistics
+            # -----------------------------------------
 
-    #         "VJquad":   "false",
+            "vegasncallsBORN":   2000000,
+            "vegasncallsCT":     2000000,
 
-    #         # -----------------------------------------
-    #         # moderate statistics
-    #         # -----------------------------------------
+            "vegasncallsVJLO":   5000000,
+            "vegasncallsVJREAL": 10000000,
+            "vegasncallsVJVIRT": 5000000,
 
-    #         "vegasncallsBORN":   2000000,
-    #         "vegasncallsCT":     2000000,
+            # -----------------------------------------
+            # smaller batches
+            # -----------------------------------------
 
-    #         "vegasncallsVJLO":   5000000,
-    #         "vegasncallsVJREAL": 10000000,
-    #         "vegasncallsVJVIRT": 5000000,
+            "cubanbatch": 5000,
+        })
 
-    #         # -----------------------------------------
-    #         # smaller batches
-    #         # -----------------------------------------
+        # =================================================
+        # N3LL
+        # =================================================
 
-    #         "cubanbatch": 5000,
-    #     })
+        if order_name != "NLL":
 
-    #     # =================================================
-    #     # N3LL
-    #     # =================================================
+            params.update({
 
-    #     if order_name == "N3LL":
+                # -----------------------------------------
+                # resummed pieces
+                # -----------------------------------------
 
-    #         params.update({
+                "vegasncallsBORN":   5000000,
+                "vegasncallsCT":     5000000,
 
-    #             # -----------------------------------------
-    #             # resummed pieces
-    #             # -----------------------------------------
+                # -----------------------------------------
+                # V+J
+                # -----------------------------------------
 
-    #             "vegasncallsBORN":   5000000,
-    #             "vegasncallsCT":     5000000,
+                "vegasncallsVJLO":   10000000,
 
-    #             # -----------------------------------------
-    #             # V+J
-    #             # -----------------------------------------
+                # REAL dominates runtime
+                "vegasncallsVJREAL": 20000000,
 
-    #             "vegasncallsVJLO":   10000000,
+                # virtual cheaper
+                "vegasncallsVJVIRT": 10000000,
 
-    #             # REAL dominates runtime
-    #             "vegasncallsVJREAL": 20000000,
+                # -----------------------------------------
+                # batches
+                # -----------------------------------------
 
-    #             # virtual cheaper
-    #             "vegasncallsVJVIRT": 10000000,
-
-    #             # -----------------------------------------
-    #             # batches
-    #             # -----------------------------------------
-
-    #             "cubanbatch": 5000,
-    #         })
+                "cubanbatch": 5000,
+            })
 
     # =====================================================
     # ULTRA SUPPRESSED REGION
-    #
+
     # delta >> 0
-    #
+
     # essentially kinematic tail
-    #
+
     # precision completely unnecessary
-    #
+
     # goal:
-    #
+
     # -> finite result
     # -> reasonable shape
     # -> avoid week-long jobs
@@ -456,17 +497,30 @@ def get_vegas_params(
 
     else:
 
-        params.update({
+        if process == "Z":
+            # la Z ha un bin solo in pt, quindi vogliamo la quadratura
+            quad_flags = {
+                "BORNquad": "true",
+                "CTquad":   "true",
+                "FPCquad":  "true",
+                "VJquad":   "false",
+            }
+        else:
 
             # -----------------------------------------
             # FULL VEGAS MODE
             # -----------------------------------------
 
-            "BORNquad": "false",
-            "CTquad":   "false",
-            "FPCquad":  "false",
+            quad_flags = {
+                "BORNquad": "false",
+                "CTquad":   "false",
+                "FPCquad":  "false",
+                "VJquad":   "false",
+            }
 
-            "VJquad":   "false",
+        params.update({
+
+            **quad_flags,
 
             # -----------------------------------------
             # ultra-light setup
@@ -490,7 +544,7 @@ def get_vegas_params(
         # N3LL
         # =================================================
 
-        if order_name == "N3LL":
+        if order_name != "NLL":
 
             params.update({
 
@@ -519,13 +573,93 @@ def get_vegas_params(
                 "cubanbatch": 2000,
             })
 
+    # =====================================================
+    # HIGH-qT BOOST for V+J Real only (independent of the
+    # pTcrit diagonal above)
+    #
+    # empirically (weekend of N3LL runs, qt68_70/ptl38_40 and
+    # qt68_70/ptl40_42 bins): below ~10 GeV in qT, VJREAL/VJVIRT
+    # converge fine with the region defaults above. Above ~10 GeV,
+    # even deep in the "SAFE" region, VJREAL shows a rel. error
+    # around 100-150% (occasionally much worse when the central
+    # value sits close to zero from the cancellation), and in at
+    # least one bin the chisq/dof was STILL RISING at the last
+    # iteration (18.0/13), meaning the grid hadn't converged yet --
+    # not just "high statistical error on an otherwise-fine fit".
+    #
+    # V+J Virtual is fine as-is and is intentionally NOT touched
+    # by the base factor (only by its own headroom multiplier below).
+    #
+    # cost check: the bins above ran in ~6 minutes for 100M calls,
+    # so a x5-x25 factor is cheap here (comfortably a few tens of
+    # minutes to a few hours), nowhere near "week-long jobs".
+    # =====================================================
+
+    QT_BOOST_THRESHOLD = 0.0
+    QT_BOOST_FACTOR = 250
+
+    # independent, fixed headroom on Virtual's own mineval -- Virtual
+    # already converges fine without Real's aggressive boost (verified:
+    # 32 iterations, well-behaved chisq/dof, at a x5 ceiling in earlier
+    # tests), so it doesn't need to track QT_BOOST_FACTOR at all
+    VJVIRT_MAXEVAL_FACTOR = 10
+
+    # -----------------------------------------------------
+    # EXTRA boost for the very first qT bin (qt_low == 0) only.
+    #
+    # For the Z process, pT(l) is merged into a single [26,60] bin
+    # (no real pT differential), so the pTcrit diagonal above doesn't
+    # carry the same meaning it does for W (ptl_high is always 60,
+    # there's no genuine "large pT(l)" bin to speak of). Empirically
+    # the qt0_2 bin still needs substantially more help than the
+    # rest: an extra x10 on top of the normal factors for BOTH
+    # V+J Real (25 -> 250) and V+J Virtual (10 -> 100). Every other
+    # qT bin is left at the normal factors.
+    # -----------------------------------------------------
+
+    QT_FIRST_BIN_EXTRA_FACTOR = 10
+    is_first_qt_bin = (qt_low == 0)
+
+    real_factor = QT_BOOST_FACTOR * (QT_FIRST_BIN_EXTRA_FACTOR if is_first_qt_bin else 1)
+    virt_factor = VJVIRT_MAXEVAL_FACTOR * (QT_FIRST_BIN_EXTRA_FACTOR if is_first_qt_bin else 1)
+
+    if qt_high > QT_BOOST_THRESHOLD and order_name != "NLL":
+
+        params["vegasncallsVJREAL"] = int(
+            params["vegasncallsVJREAL"] * real_factor
+        )
+        # vegasncallsVJVIRT (mineval) deliberately left untouched --
+        # it converges fine as-is, no boost needed
+
+    # -----------------------------------------------------
+    # maxevalVJREAL / maxevalVJVIRT are separate config keys (see
+    # cubacall.cpp update: vjrealintegr/vjvirtintegr each read their
+    # own key instead of a single shared opts.maxeval). Decoupled:
+    # Real can scale into the tens of billions (long long, safe)
+    # without ever risking Virtual's still-int32 maxeval.
+    #
+    # INT32_SAFE_MAX is a belt-and-suspenders cap on Virtual only:
+    # not expected to ever trigger at VJVIRT_MAXEVAL_FACTOR=10 (or
+    # x100 on the first qT bin) with today's region defaults, but
+    # protects against silent overflow if that factor or a region's
+    # base vegasncallsVJVIRT is raised later without remembering
+    # this constraint. Real is NOT capped here since it now uses
+    # long long int (see cubacall.cpp).
+    # -----------------------------------------------------
+
+    INT32_SAFE_MAX = 2_000_000_000  # margin below 2^31-1 (2,147,483,647)
+
+    params["maxevalVJREAL"] = params["vegasncallsVJREAL"]
+    params["maxevalVJVIRT"] = min(
+        int(params["vegasncallsVJVIRT"] * virt_factor),
+        INT32_SAFE_MAX,
+    )
+
     return params
 
 # -------------------------
 # detect EOS
 # -------------------------
-
-cwd = os.getcwd()
 
 on_eos = cwd.startswith("/eos/")
 
@@ -557,12 +691,6 @@ else:
         "/gwpool/users/abulla/DYTurbo"
     )
 
-# prende il tag dopo DYTurbo-results/
-process = "unknown"
-
-if "DYTurbo-results/" in cwd:
-    process = cwd.split("DYTurbo-results/")[1].split("/")[0]
-
 workdir = f"{afs_base}/{process}"
 os.makedirs(workdir, exist_ok=True)
 
@@ -586,6 +714,7 @@ print(f"[INFO] Creating tarball: {tarball_dest}")
 #     "tar",
 #     "-czf",
 #     tarball_dest,
+#     "--exclude=dyturbo-1.4.2-empire/DYZ",
 #     "-C",
 #     tarball_source,
 #     "dyturbo-1.4.2-empire"
@@ -601,11 +730,8 @@ subprocess.run(["cp", executable, jobs_dir], cwd=os.getcwd(), check=True)
 # loop
 # -------------------------
 
-qt_edges  = list(range(0, 102, 2))
-# qt_edges = [40, 50, 60, 70, 80, 90, 100]
-# ptl_edges = list(range(25, 61, 1))
-ptl_edges = [25, 60]
-# ptl_edges = [25, 30, 35, 40, 45, 50, 55, 60]
+qt_edges  = list(range(0, 52, 2))
+ptl_edges = [28, 60]
 
 queue_entries = []
 
@@ -660,123 +786,103 @@ for cfg in configs:
         # merge all pT bins
         # =============================================
 
-        if qt_high >= 35:
+        # if qt_high >= 35:
 
-            ## i want single bin pt 
-            ptl_groups = []
+        #     ptl_groups = [ptl_edges]
+            
+        # # =============================================
+        # # one bin per job
+        # # =============================================
 
-            ipt = 0
-            while ipt < len(ptl_edges)-1:
-                ptl_group_size = 1
+        # else:
 
-                remaining = (
-                    len(ptl_edges)-1 - ipt
-                )
-                
-                ptl_group_size = min(
-                    ptl_group_size,
-                    remaining
-                )
-
-                # -------------------------------------
-                # build pT group
-                # -------------------------------------
-
-                sub_ptl_edges = ptl_edges[
-                    ipt:ipt+ptl_group_size+1
-                ]
-
-                ptl_groups.append(
-                    sub_ptl_edges
-                )
-
-                ipt += ptl_group_size
-
-
-            # ptl_groups = [ptl_edges]
+        ptl_groups = [
+            ptl_edges[i:i+2]
+            for i in range(len(ptl_edges)-1)
+        ]
 
         # =============================================
         # adaptive low-qT grouping
         # =============================================
 
-        else:
+        # else:
 
-            ptl_groups = []
+        #     ptl_groups = []
 
-            ipt = 0
+        #     ipt = 0
 
-            while ipt < len(ptl_edges)-1:
+        #     while ipt < len(ptl_edges)-1:
 
-                ptl_low_tmp = ptl_edges[ipt]
+        #         ptl_low_tmp = ptl_edges[ipt]
 
-                # -------------------------------------
-                # distance from pathological diagonal
-                # -------------------------------------
+        #         # -------------------------------------
+        #         # distance from pathological diagonal
+        #         # -------------------------------------
 
-                delta = (
-                    ptl_low_tmp - pt_critical
-                )
+        #         delta = (
+        #             ptl_low_tmp - pt_critical
+        #         )
 
-                # -------------------------------------
-                # adaptive refinement
-                # -------------------------------------
+        #         # -------------------------------------
+        #         # adaptive refinement
+        #         # -------------------------------------
 
-                if delta >= 0:
+        #         if delta >= 0:
 
-                    # pathological
-                    ptl_group_size = 1
+        #             # pathological
+        #             ptl_group_size = 1
 
-                elif delta >= -5:
+        #         elif delta >= -5:
 
-                    # very delicate
-                    ptl_group_size = 2
+        #             # very delicate
+        #             ptl_group_size = 2
 
-                elif delta >= -10:
+        #         elif delta >= -10:
 
-                    # difficult
-                    ptl_group_size = 3
+        #             # difficult
+        #             ptl_group_size = 3
 
-                elif delta >= -15:
+        #         elif delta >= -15:
 
-                    # moderate
-                    ptl_group_size = 5
+        #             # moderate
+        #             ptl_group_size = 5
 
-                elif delta >= -20:
+        #         elif delta >= -20:
 
-                    # safe
-                    ptl_group_size = 8
+        #             # safe
+        #             ptl_group_size = 8
 
-                else:
+        #         else:
 
-                    # very safe
-                    ptl_group_size = 12
+        #             # very safe
+        #             ptl_group_size = 12
 
-                # -------------------------------------
-                # avoid overflow
-                # -------------------------------------
+        #         # -------------------------------------
+        #         # avoid overflow
+        #         # -------------------------------------
 
-                remaining = (
-                    len(ptl_edges)-1 - ipt
-                )
+        #         remaining = (
+        #             len(ptl_edges)-1 - ipt
+        #         )
 
-                ptl_group_size = min(
-                    ptl_group_size,
-                    remaining
-                )
+        #         ptl_group_size = min(
+        #             ptl_group_size,
+        #             remaining
+        #         )
 
-                # -------------------------------------
-                # build pT group
-                # -------------------------------------
+        #         # -------------------------------------
+        #         # build pT group
+        #         # -------------------------------------
 
-                sub_ptl_edges = ptl_edges[
-                    ipt:ipt+ptl_group_size+1
-                ]
+        #         sub_ptl_edges = ptl_edges[
+        #             ipt:ipt+ptl_group_size+1
+        #         ]
 
-                ptl_groups.append(
-                    sub_ptl_edges
-                )
+        #         ptl_groups.append(
+        #             sub_ptl_edges
+        #         )
 
-                ipt += ptl_group_size
+        #         ipt += ptl_group_size
 
         print("")
         print(
@@ -822,9 +928,8 @@ for cfg in configs:
                 vegas_params = get_vegas_params(
                     qt_low,
                     qt_high,
-                    ptl_low,
-                    ptl_high,
-                    order_name
+                    order_name,
+                    process
                 )
 
                 # =====================================
@@ -842,6 +947,19 @@ for cfg in configs:
                         f"muF{muF}_"
                         f"muQ{muQ}"
                     )
+
+                    # nome griglia: stesso per nominale e variazioni
+                    # (niente muR/muF/muQ nel nome)
+                    grid_tag = (
+                        f"{process}_{obs}_{qt_tag}_{ptl_tag}_{order_name}"
+                    )
+                    vegas_params["statefile"] = f"grid_{grid_tag}.state"
+
+                    # flag: 16 = crea/trattieni (nominale),
+                    #       48 = carica solo la griglia, riparti da zero
+                    #            sulle statistiche (variazioni)
+                    is_nominal = (muR, muF, muQ) == (1.0, 1.0, 1.0)
+                    vegas_params["vegasFlagsExtra"] = 16 if is_nominal else 48
 
                     cfg_out = (
                         f"{jobs_dir}/{tag}.in"
@@ -901,9 +1019,7 @@ should_transfer_files = YES
 
 transfer_input_files = run_dyturbo.sh,$(cfg).in,../../{tarball_dest.split('/')[-1]}
 
-+JobFlavour = "tomorrow"
-
-max_materialize = 1000
++JobFlavour = "nextweek"
 
 JobBatchName = "DYTurbo_{process}_{order_name}"
 
