@@ -27,7 +27,7 @@ configs = [
 orders = {
     "NLL": 1,
     "NNLL": 2,
-    "N3LL": 3,
+    # "N3LL": 3,
 }
 
 # =====================================================
@@ -49,26 +49,16 @@ scale_values = [0.5, 1.0, 2.0]
 # etc
 # -----------------------------------------------------
 
-scale_variations = list(
-    itertools.product(
-        scale_values,
-        scale_values,
-        scale_values
-    )
-)
-
-# optional:
-# keep nominal first
-scale_variations.sort(
-    key=lambda x: (
-        x != (1.0, 1.0, 1.0),
-        x
-    )
-)
-
 scale_variations = [
-    (1.0, 1.0, 1.0)
+    (muR, muF, muQ)
+    for muR, muF, muQ in itertools.product(scale_values, scale_values, scale_values)
+    if max(muR, muF, muQ) / min(muR, muF, muQ) <= 2
+    and (muR, muF, muQ) != (1.0, 1.0, 1.0)
 ]
+
+# scale_variations = [
+#     (1.0, 1.0, 1.0)
+# ]
 
 print("")
 print("[INFO] scale variations:")
@@ -596,13 +586,18 @@ def get_vegas_params(
     # =====================================================
 
     QT_BOOST_THRESHOLD = 0.0
-    QT_BOOST_FACTOR = 250
 
-    # independent, fixed headroom on Virtual's own mineval -- Virtual
-    # already converges fine without Real's aggressive boost (verified:
-    # 32 iterations, well-behaved chisq/dof, at a x5 ceiling in earlier
-    # tests), so it doesn't need to track QT_BOOST_FACTOR at all
-    VJVIRT_MAXEVAL_FACTOR = 10
+    if scale_variations == [(1.0, 1.0, 1.0)]:
+        QT_BOOST_FACTOR = 250
+
+        # independent, fixed headroom on Virtual's own mineval -- Virtual
+        # already converges fine without Real's aggressive boost (verified:
+        # 32 iterations, well-behaved chisq/dof, at a x5 ceiling in earlier
+        # tests), so it doesn't need to track QT_BOOST_FACTOR at all
+        VJVIRT_MAXEVAL_FACTOR = 10
+    else:
+        QT_BOOST_FACTOR = 50
+        VJVIRT_MAXEVAL_FACTOR = 2
 
     # -----------------------------------------------------
     # EXTRA boost for the very first qT bin (qt_low == 0) only.

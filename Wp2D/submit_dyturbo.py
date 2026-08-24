@@ -25,9 +25,9 @@ configs = [
 ]
 
 orders = {
-    "NLL": 1,
+    # "NLL": 1,
     "NNLL": 2,
-    "N3LL": 3,
+    # "N3LL": 3,
 }
 
 # =====================================================
@@ -49,26 +49,27 @@ scale_values = [0.5, 1.0, 2.0]
 # etc
 # -----------------------------------------------------
 
-scale_variations = list(
-    itertools.product(
-        scale_values,
-        scale_values,
-        scale_values
-    )
-)
-
-# optional:
-# keep nominal first
-scale_variations.sort(
-    key=lambda x: (
-        x != (1.0, 1.0, 1.0),
-        x
-    )
-)
 
 scale_variations = [
-    (1.0, 1.0, 1.0)
+    (muR, muF, muQ)
+    for muR, muF, muQ in itertools.product(scale_values, scale_values, scale_values)
+    if max(muR, muF, muQ) / min(muR, muF, muQ) <= 2
+    and (muR, muF, muQ) != (1.0, 1.0, 1.0)
 ]
+
+
+# # optional:
+# # keep nominal first
+# scale_variations.sort(
+#     key=lambda x: (
+#         x != (1.0, 1.0, 1.0),
+#         x
+#     )
+# )
+
+# scale_variations = [
+#     (1.0, 1.0, 1.0)
+# ]
 
 print("")
 print("[INFO] scale variations:")
@@ -573,15 +574,19 @@ def get_vegas_params(
     # =====================================================
 
     QT_BOOST_THRESHOLD = 0.0
-    QT_BOOST_FACTOR = 250
+    
+    if scale_variations == [(1.0, 1.0, 1.0)]:
+        QT_BOOST_FACTOR = 250
+        # independent, fixed headroom on Virtual's own mineval -- Virtual
+        # already converges fine without Real's aggressive boost (verified:
+        # 32 iterations, well-behaved chisq/dof, at a x5 ceiling in earlier
+        # tests), so it doesn't need to track QT_BOOST_FACTOR at all
+        VJVIRT_MAXEVAL_FACTOR = 50
+    else:
+        QT_BOOST_FACTOR = 50
+        VJVIRT_MAXEVAL_FACTOR = 10
  
-    # independent, fixed headroom on Virtual's own mineval -- Virtual
-    # already converges fine without Real's aggressive boost (verified:
-    # 32 iterations, well-behaved chisq/dof, at a x5 ceiling in earlier
-    # tests), so it doesn't need to track QT_BOOST_FACTOR at all
-    VJVIRT_MAXEVAL_FACTOR = 50
- 
-    if qt_high > QT_BOOST_THRESHOLD and order_name == "N3LL":
+    if qt_high > QT_BOOST_THRESHOLD and order_name != "NLL":
  
         params["vegasncallsVJREAL"] = int(
             params["vegasncallsVJREAL"] * QT_BOOST_FACTOR
@@ -693,211 +698,303 @@ ptl_edges = list(range(28, 62, 2))
 
 queue_entries = []
 
-for cfg in configs:
+# for cfg in configs:
 
+#     obs = os.path.basename(cfg).replace(".in", "")
+
+#     qt_group_size = 1
+
+#     # =================================================
+#     # qT loop
+#     # =================================================
+
+#     for iqt in range(
+#         0,
+#         len(qt_edges)-1,
+#         qt_group_size
+#     ):
+
+#         sub_qt_edges = qt_edges[
+#             iqt:iqt+qt_group_size+1
+#         ]
+
+#         qt_bins_string = " ".join(
+#             map(str, sub_qt_edges)
+#         )
+
+#         qt_low  = sub_qt_edges[0]
+#         qt_high = sub_qt_edges[-1]
+
+#         qt_tag = f"qt{qt_low}_{qt_high}"
+
+#         # =============================================
+#         # empirical critical diagonal
+#         #
+#         # pT_critical ~ 45 + 0.6*qT
+#         #
+#         # above this:
+#         # - cancellations explode
+#         # - quadrature dies
+#         # - vegas variance explodes
+#         # =============================================
+
+#         pt_critical = 45 + 0.6 * qt_high
+
+#         # =============================================
+#         # high-qT region
+#         #
+#         # above ~35 GeV:
+#         # no pathological phase-space remains
+#         #
+#         # merge all pT bins
+#         # =============================================
+
+#         # if qt_high >= 35:
+
+#         #     ptl_groups = [ptl_edges]
+            
+#         # # =============================================
+#         # # one bin per job
+#         # # =============================================
+
+#         # else:
+
+#         ptl_groups = [
+#             ptl_edges[i:i+2]
+#             for i in range(len(ptl_edges)-1)
+#         ]
+
+#         # =============================================
+#         # adaptive low-qT grouping
+#         # =============================================
+
+#         # else:
+
+#         #     ptl_groups = []
+
+#         #     ipt = 0
+
+#         #     while ipt < len(ptl_edges)-1:
+
+#         #         ptl_low_tmp = ptl_edges[ipt]
+
+#         #         # -------------------------------------
+#         #         # distance from pathological diagonal
+#         #         # -------------------------------------
+
+#         #         delta = (
+#         #             ptl_low_tmp - pt_critical
+#         #         )
+
+#         #         # -------------------------------------
+#         #         # adaptive refinement
+#         #         # -------------------------------------
+
+#         #         if delta >= 0:
+
+#         #             # pathological
+#         #             ptl_group_size = 1
+
+#         #         elif delta >= -5:
+
+#         #             # very delicate
+#         #             ptl_group_size = 2
+
+#         #         elif delta >= -10:
+
+#         #             # difficult
+#         #             ptl_group_size = 3
+
+#         #         elif delta >= -15:
+
+#         #             # moderate
+#         #             ptl_group_size = 5
+
+#         #         elif delta >= -20:
+
+#         #             # safe
+#         #             ptl_group_size = 8
+
+#         #         else:
+
+#         #             # very safe
+#         #             ptl_group_size = 12
+
+#         #         # -------------------------------------
+#         #         # avoid overflow
+#         #         # -------------------------------------
+
+#         #         remaining = (
+#         #             len(ptl_edges)-1 - ipt
+#         #         )
+
+#         #         ptl_group_size = min(
+#         #             ptl_group_size,
+#         #             remaining
+#         #         )
+
+#         #         # -------------------------------------
+#         #         # build pT group
+#         #         # -------------------------------------
+
+#         #         sub_ptl_edges = ptl_edges[
+#         #             ipt:ipt+ptl_group_size+1
+#         #         ]
+
+#         #         ptl_groups.append(
+#         #             sub_ptl_edges
+#         #         )
+
+#         #         ipt += ptl_group_size
+
+#         print("")
+#         print(
+#             f"[INFO] qT = [{qt_low}, {qt_high}] "
+#             f"--> generated {len(ptl_groups)} pT groups"
+#         )
+
+#         # =============================================
+#         # pT loop
+#         # =============================================
+
+#         for sub_ptl_edges in ptl_groups:
+
+#             ptl_bins_string = " ".join(
+#                 map(str, sub_ptl_edges)
+#             )
+
+#             ptl_low  = sub_ptl_edges[0]
+#             ptl_high = sub_ptl_edges[-1]
+
+#             ptl_tag = f"ptl{ptl_low}_{ptl_high}"
+
+#             # =========================================
+#             # perturbative orders
+#             # =========================================
+
+#             for order_name, order_value in orders.items():
+
+#                 if order_value == 3:
+
+#                     variations = [
+#                         (1.0, 1.0, 1.0)
+#                     ]
+
+#                 else:
+
+#                     variations = scale_variations
+
+#                 # =====================================
+#                 # adaptive vegas setup
+#                 # =====================================
+
+#                 vegas_params = get_vegas_params(
+#                     qt_low,
+#                     qt_high,
+#                     ptl_low,
+#                     ptl_high,
+#                     order_name,
+#                     process
+#                 )
+
+#                 # =====================================
+#                 # scale variations
+#                 # =====================================
+
+#                 for muR, muF, muQ in variations:
+
+#                     tag = (
+#                         f"{process}_{obs}_"
+#                         f"{qt_tag}_"
+#                         f"{ptl_tag}_"
+#                         f"{order_name}_"
+#                         f"muR{muR}_"
+#                         f"muF{muF}_"
+#                         f"muQ{muQ}"
+#                     )
+
+#                     # nome griglia: stesso per nominale e variazioni
+#                     # (niente muR/muF/muQ nel nome)
+#                     grid_tag = (
+#                         f"{process}_{obs}_{qt_tag}_{ptl_tag}_{order_name}"
+#                     )
+#                     vegas_params["statefile"] = f"grid_{grid_tag}.state"
+
+#                     # flag: 16 = crea/trattieni (nominale),
+#                     #       48 = carica solo la griglia, riparti da zero
+#                     #            sulle statistiche (variazioni)
+#                     is_nominal = (muR, muF, muQ) == (1.0, 1.0, 1.0)
+#                     vegas_params["vegasFlagsExtra"] = 16 if is_nominal else 48
+
+#                     cfg_out = (
+#                         f"{jobs_dir}/{tag}.in"
+#                     )
+
+#                     modify_config(
+#                         cfg,
+#                         cfg_out,
+#                         order_value,
+#                         muR,
+#                         muF,
+#                         muQ,
+#                         tag,
+#                         qt_bins_string,
+#                         ptl_bins_string,
+#                         vegas_params
+#                     )
+
+#                     queue_entries.append(
+#                         f"{jobs_dir}/{tag}"
+#                     )
+
+
+# =============================================
+# bin patologici da rifare con nstart=20M
+# =============================================
+
+PATHOLOGICAL_BINS = {
+    (0,  2):  list(range(44, 60, 2)),
+    (2,  4):  list(range(46, 60, 2)),
+    (4,  6):  list(range(46, 60, 2)),
+    (6,  8):  list(range(48, 60, 2)),
+    (8,  10): list(range(50, 60, 2)),
+    (10, 12): list(range(52, 60, 2)),
+    (12, 14): list(range(50, 60, 2)),
+    (14, 16): list(range(54, 60, 2)),
+    (16, 18): list(range(56, 60, 2)),
+    (18, 20): list(range(56, 60, 2)),
+    (20, 22): list(range(56, 60, 2)),
+    (22, 24): list(range(58, 60, 2)),
+}
+
+queue_entries = []
+
+for cfg in configs:
     obs = os.path.basename(cfg).replace(".in", "")
 
-    qt_group_size = 1
+    for (qt_low, qt_high), ptl_lows in PATHOLOGICAL_BINS.items():
 
-    # =================================================
-    # qT loop
-    # =================================================
+        qt_tag         = f"qt{qt_low}_{qt_high}"
+        qt_bins_string = f"{qt_low} {qt_high}"
 
-    for iqt in range(
-        0,
-        len(qt_edges)-1,
-        qt_group_size
-    ):
-
-        sub_qt_edges = qt_edges[
-            iqt:iqt+qt_group_size+1
-        ]
-
-        qt_bins_string = " ".join(
-            map(str, sub_qt_edges)
-        )
-
-        qt_low  = sub_qt_edges[0]
-        qt_high = sub_qt_edges[-1]
-
-        qt_tag = f"qt{qt_low}_{qt_high}"
-
-        # =============================================
-        # empirical critical diagonal
-        #
-        # pT_critical ~ 45 + 0.6*qT
-        #
-        # above this:
-        # - cancellations explode
-        # - quadrature dies
-        # - vegas variance explodes
-        # =============================================
-
-        pt_critical = 45 + 0.6 * qt_high
-
-        # =============================================
-        # high-qT region
-        #
-        # above ~35 GeV:
-        # no pathological phase-space remains
-        #
-        # merge all pT bins
-        # =============================================
-
-        # if qt_high >= 35:
-
-        #     ptl_groups = [ptl_edges]
-            
-        # # =============================================
-        # # one bin per job
-        # # =============================================
-
-        # else:
-
-        ptl_groups = [
-            ptl_edges[i:i+2]
-            for i in range(len(ptl_edges)-1)
-        ]
-
-        # =============================================
-        # adaptive low-qT grouping
-        # =============================================
-
-        # else:
-
-        #     ptl_groups = []
-
-        #     ipt = 0
-
-        #     while ipt < len(ptl_edges)-1:
-
-        #         ptl_low_tmp = ptl_edges[ipt]
-
-        #         # -------------------------------------
-        #         # distance from pathological diagonal
-        #         # -------------------------------------
-
-        #         delta = (
-        #             ptl_low_tmp - pt_critical
-        #         )
-
-        #         # -------------------------------------
-        #         # adaptive refinement
-        #         # -------------------------------------
-
-        #         if delta >= 0:
-
-        #             # pathological
-        #             ptl_group_size = 1
-
-        #         elif delta >= -5:
-
-        #             # very delicate
-        #             ptl_group_size = 2
-
-        #         elif delta >= -10:
-
-        #             # difficult
-        #             ptl_group_size = 3
-
-        #         elif delta >= -15:
-
-        #             # moderate
-        #             ptl_group_size = 5
-
-        #         elif delta >= -20:
-
-        #             # safe
-        #             ptl_group_size = 8
-
-        #         else:
-
-        #             # very safe
-        #             ptl_group_size = 12
-
-        #         # -------------------------------------
-        #         # avoid overflow
-        #         # -------------------------------------
-
-        #         remaining = (
-        #             len(ptl_edges)-1 - ipt
-        #         )
-
-        #         ptl_group_size = min(
-        #             ptl_group_size,
-        #             remaining
-        #         )
-
-        #         # -------------------------------------
-        #         # build pT group
-        #         # -------------------------------------
-
-        #         sub_ptl_edges = ptl_edges[
-        #             ipt:ipt+ptl_group_size+1
-        #         ]
-
-        #         ptl_groups.append(
-        #             sub_ptl_edges
-        #         )
-
-        #         ipt += ptl_group_size
-
-        print("")
-        print(
-            f"[INFO] qT = [{qt_low}, {qt_high}] "
-            f"--> generated {len(ptl_groups)} pT groups"
-        )
-
-        # =============================================
-        # pT loop
-        # =============================================
-
-        for sub_ptl_edges in ptl_groups:
-
-            ptl_bins_string = " ".join(
-                map(str, sub_ptl_edges)
-            )
-
-            ptl_low  = sub_ptl_edges[0]
-            ptl_high = sub_ptl_edges[-1]
-
-            ptl_tag = f"ptl{ptl_low}_{ptl_high}"
-
-            # =========================================
-            # perturbative orders
-            # =========================================
+        for ptl_low in ptl_lows:
+            ptl_high       = ptl_low + 2
+            ptl_tag        = f"ptl{ptl_low}_{ptl_high}"
+            ptl_bins_string = f"{ptl_low} {ptl_high}"
 
             for order_name, order_value in orders.items():
-
                 if order_value == 3:
-
-                    variations = [
-                        (1.0, 1.0, 1.0)
-                    ]
-
+                    variations = [(1.0, 1.0, 1.0)]
                 else:
-
                     variations = scale_variations
 
-                # =====================================
-                # adaptive vegas setup
-                # =====================================
-
                 vegas_params = get_vegas_params(
-                    qt_low,
-                    qt_high,
-                    ptl_low,
-                    ptl_high,
-                    order_name,
-                    process
+                    qt_low, qt_high,
+                    ptl_low, ptl_high,
+                    order_name, process
                 )
 
-                # =====================================
-                # scale variations
-                # =====================================
-
                 for muR, muF, muQ in variations:
-
                     tag = (
                         f"{process}_{obs}_"
                         f"{qt_tag}_"
@@ -907,40 +1004,27 @@ for cfg in configs:
                         f"muF{muF}_"
                         f"muQ{muQ}"
                     )
-
-                    # nome griglia: stesso per nominale e variazioni
-                    # (niente muR/muF/muQ nel nome)
                     grid_tag = (
                         f"{process}_{obs}_{qt_tag}_{ptl_tag}_{order_name}"
                     )
                     vegas_params["statefile"] = f"grid_{grid_tag}.state"
 
-                    # flag: 16 = crea/trattieni (nominale),
-                    #       48 = carica solo la griglia, riparti da zero
-                    #            sulle statistiche (variazioni)
                     is_nominal = (muR, muF, muQ) == (1.0, 1.0, 1.0)
                     vegas_params["vegasFlagsExtra"] = 16 if is_nominal else 48
 
-                    cfg_out = (
-                        f"{jobs_dir}/{tag}.in"
-                    )
-
+                    cfg_out = f"{jobs_dir}/{tag}.in"
                     modify_config(
                         cfg,
                         cfg_out,
                         order_value,
-                        muR,
-                        muF,
-                        muQ,
+                        muR, muF, muQ,
                         tag,
                         qt_bins_string,
                         ptl_bins_string,
                         vegas_params
                     )
+                    queue_entries.append(f"{jobs_dir}/{tag}")
 
-                    queue_entries.append(
-                        f"{jobs_dir}/{tag}"
-                    )
 
 # -------------------------
 # condor requirements

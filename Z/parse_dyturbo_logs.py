@@ -161,7 +161,7 @@ PT_BOUNDARY_RE = re.compile(
 FILENAME_RE = re.compile(
     r"qt_qt(?P<qt_lo>\d+\.?\d*)_(?P<qt_hi>\d+\.?\d*)_"
     r"ptl(?P<ptl_lo>\d+\.?\d*)_(?P<ptl_hi>\d+\.?\d*)_"
-    r"(?P<order>N3?LL)_"
+    r"(?P<order>LO|[A-Za-z0-9]+LL)_"
     r"muR(?P<muR>\d+\.?\d*)_muF(?P<muF>\d+\.?\d*)_muQ(?P<muQ>\d+\.?\d*)"
 )
 
