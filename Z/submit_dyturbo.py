@@ -106,8 +106,8 @@ def modify_config(
         elif stripped.startswith("kmufac"):
             new_lines.append(f"kmufac = {muF}\n")
 
-        elif stripped.startswith("fmures"):
-            new_lines.append(f"fmures = {muQ}\n")
+        elif stripped.startswith("kmures"):
+            new_lines.append(f"kmures = {muQ}\n")
 
         elif stripped.startswith("output_filename"):
             new_lines.append(
@@ -725,7 +725,7 @@ subprocess.run(["cp", executable, jobs_dir], cwd=os.getcwd(), check=True)
 # loop
 # -------------------------
 
-qt_edges  = list(range(0, 52, 2))
+qt_edges  = list(range(0, 62, 2))
 ptl_edges = [28, 60]
 
 queue_entries = []

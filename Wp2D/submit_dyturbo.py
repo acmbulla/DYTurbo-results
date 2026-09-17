@@ -47,9 +47,9 @@ configs = [
 ]
 
 orders = {
-    # "NLL":  1,
+    "NLL":  1,
     "NNLL": 2,
-    "N3LL": 3,
+    # "N3LL": 3,
 }
 
 # =====================================================
@@ -58,16 +58,17 @@ orders = {
 
 scale_values = [0.5, 1.0, 2.0]
 
-# scale_variations = [
-#     (muR, muF, muQ)
-#     for muR, muF, muQ in itertools.product(scale_values, scale_values, scale_values)
-#     if max(muR, muF, muQ) / min(muR, muF, muQ) <= 2
-#     and (muR, muF, muQ) != (1.0, 1.0, 1.0)
-# ]
-
 scale_variations = [
-    (1.0, 1.0, 1.0)
+    (muR, muF, muQ)
+    for muR, muF, muQ in itertools.product(scale_values, scale_values, scale_values)
+    if max(muR, muF, muQ) / min(muR, muF, muQ) <= 2
+    and (muR, muF, muQ) != (1.0, 1.0, 1.0)
+    and muQ != 1.0  # solo variazioni con muQ != 1
 ]
+
+# scale_variations = [
+#     (1.0, 1.0, 1.0)
+# ]
 
 print("")
 print(f"[INFO] scale variations: {len(scale_variations)} entries")
@@ -148,8 +149,8 @@ def modify_config(
             new_lines.append(f"kmuren = {muR}\n")
         elif stripped.startswith("kmufac"):
             new_lines.append(f"kmufac = {muF}\n")
-        elif stripped.startswith("fmures"):
-            new_lines.append(f"fmures = {muQ}\n")
+        elif stripped.startswith("kmures"):
+            new_lines.append(f"kmures = {muQ}\n")
         elif stripped.startswith("output_filename"):
             new_lines.append(f"output_filename = outputs/{tag}\n")
         elif stripped.startswith("qt_bins"):
@@ -735,22 +736,22 @@ queue_entries = []
 # bin patologici da rifare con nstart=20M
 # =============================================
 
-PATHOLOGICAL_BINS = {
-    (0,  2):  list(range(44, 60, 2)),
-    (2,  4):  list(range(46, 60, 2)),
-    (4,  6):  list(range(46, 60, 2)),
-    (6,  8):  list(range(48, 60, 2)),
-    (8,  10): list(range(48, 60, 2)),  # era 50
-    (10, 12): list(range(50, 60, 2)),  # era 52
-    (12, 14): list(range(50, 60, 2)),
-    (14, 16): list(range(52, 60, 2)),  # era 54
-    (16, 18): list(range(54, 60, 2)),  # era 56
-    (18, 20): list(range(54, 60, 2)),  # era 56
-    (20, 22): list(range(54, 60, 2)),  # era 56
-    (22, 24): list(range(56, 60, 2)),  # era 58
-    (24, 26): list(range(58, 60, 2)),  # nuovo
-    (26, 28): list(range(58, 60, 2)),  # nuovo
-}
+# PATHOLOGICAL_BINS = {
+#     (0,  2):  list(range(44, 60, 2)),
+#     (2,  4):  list(range(46, 60, 2)),
+#     (4,  6):  list(range(46, 60, 2)),
+#     (6,  8):  list(range(48, 60, 2)),
+#     (8,  10): list(range(48, 60, 2)),  # era 50
+#     (10, 12): list(range(50, 60, 2)),  # era 52
+#     (12, 14): list(range(50, 60, 2)),
+#     (14, 16): list(range(52, 60, 2)),  # era 54
+#     (16, 18): list(range(54, 60, 2)),  # era 56
+#     (18, 20): list(range(54, 60, 2)),  # era 56
+#     (20, 22): list(range(54, 60, 2)),  # era 56
+#     (22, 24): list(range(56, 60, 2)),  # era 58
+#     (24, 26): list(range(58, 60, 2)),  # nuovo
+#     (26, 28): list(range(58, 60, 2)),  # nuovo
+# }
 
 # PATHOLOGICAL_BINS = {
 #     (8,  10): [48],
@@ -790,18 +791,99 @@ for cfg in configs:
     #         ptl_tag         = f"ptl{ptl_low}_{ptl_high}"
     #         ptl_bins_string = f"{ptl_low} {ptl_high}"
 
-    for (qt_low, qt_high), ptl_lows in PATHOLOGICAL_BINS.items():
+    # for (qt_low, qt_high), ptl_lows in PATHOLOGICAL_BINS.items():
 
+    #     qt_tag         = f"qt{qt_low}_{qt_high}"
+    #     qt_bins_string = f"{qt_low} {qt_high}"
+
+    #     for ptl_low in ptl_lows:
+
+    #         ptl_high        = ptl_low + 2
+    #         ptl_tag         = f"ptl{ptl_low}_{ptl_high}"
+    #         ptl_bins_string = f"{ptl_low} {ptl_high}"
+
+    #         delta = ptl_high - (45 + 0.6 * qt_high)
+
+    #         for order_name, order_value in orders.items():
+
+    #             if order_value == 3:
+    #                 variations = [(1.0, 1.0, 1.0)]
+    #             else:
+    #                 variations = scale_variations
+
+    #             # determine which terms are valid for this order
+    #             # NLL has no Real/Virtual split (just VJ)
+    #             if order_value == 1:
+    #                 terms_for_order = [t for t in active_terms if t not in ("VJREAL", "VJVIRT")]
+    #                 # NLL: add VJ as a single term if requested
+    #                 # (handled outside this script for now)
+    #             else:
+    #                 terms_for_order = active_terms
+
+    #             vegas_params = get_vegas_params(
+    #                 qt_low, qt_high,
+    #                 ptl_low, ptl_high,
+    #                 order_name, process
+    #             )
+
+    #             for term_name in terms_for_order:
+
+    #                 # merge term switches into vegas_params
+    #                 vegas_params.update(TERM_SWITCHES[term_name])
+
+    #                 for muR, muF, muQ in variations:
+
+    #                     tag = (
+    #                         f"{process}_{obs}_"
+    #                         f"{qt_tag}_"
+    #                         f"{ptl_tag}_"
+    #                         f"{order_name}_"
+    #                         f"{term_name}_"
+    #                         f"muR{muR}_muF{muF}_muQ{muQ}"
+    #                     )
+
+    #                     grid_tag = (
+    #                         f"{process}_{obs}_{qt_tag}_{ptl_tag}"
+    #                         f"_{order_name}"
+    #                     )
+    #                     vegas_params["statefile"] = f"grid_{grid_tag}.state"
+
+    #                     is_nominal = (muR, muF, muQ) == (1.0, 1.0, 1.0)
+    #                     vegas_params["vegasFlagsExtra"] = 16 if is_nominal else 48
+
+    #                     cfg_out = f"{jobs_dir}/{tag}.in"
+
+    #                     modify_config(
+    #                         cfg,
+    #                         cfg_out,
+    #                         order_value,
+    #                         muR, muF, muQ,
+    #                         tag,
+    #                         qt_bins_string,
+    #                         ptl_bins_string,
+    #                         vegas_params
+    #                     )
+
+    #                     queue_entries.append(f"{jobs_dir}/{tag}")
+
+    for iqt in range(0, len(qt_edges) - 1):
+
+        qt_low  = qt_edges[iqt]
+        qt_high = qt_edges[iqt + 1]
         qt_tag         = f"qt{qt_low}_{qt_high}"
         qt_bins_string = f"{qt_low} {qt_high}"
 
-        for ptl_low in ptl_lows:
+        ptl_groups = [
+            ptl_edges[i:i+2]
+            for i in range(len(ptl_edges) - 1)
+        ]
 
-            ptl_high        = ptl_low + 2
+        for sub_ptl_edges in ptl_groups:
+
+            ptl_low         = sub_ptl_edges[0]
+            ptl_high        = sub_ptl_edges[-1]
             ptl_tag         = f"ptl{ptl_low}_{ptl_high}"
             ptl_bins_string = f"{ptl_low} {ptl_high}"
-
-            delta = ptl_high - (45 + 0.6 * qt_high)
 
             for order_name, order_value in orders.items():
 
@@ -810,12 +892,8 @@ for cfg in configs:
                 else:
                     variations = scale_variations
 
-                # determine which terms are valid for this order
-                # NLL has no Real/Virtual split (just VJ)
                 if order_value == 1:
                     terms_for_order = [t for t in active_terms if t not in ("VJREAL", "VJVIRT")]
-                    # NLL: add VJ as a single term if requested
-                    # (handled outside this script for now)
                 else:
                     terms_for_order = active_terms
 
@@ -827,7 +905,6 @@ for cfg in configs:
 
                 for term_name in terms_for_order:
 
-                    # merge term switches into vegas_params
                     vegas_params.update(TERM_SWITCHES[term_name])
 
                     for muR, muF, muQ in variations:
@@ -843,7 +920,7 @@ for cfg in configs:
 
                         grid_tag = (
                             f"{process}_{obs}_{qt_tag}_{ptl_tag}"
-                            f"_{order_name}_{term_name}"
+                            f"_{order_name}"
                         )
                         vegas_params["statefile"] = f"grid_{grid_tag}.state"
 
